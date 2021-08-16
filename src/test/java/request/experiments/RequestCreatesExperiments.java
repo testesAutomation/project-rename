@@ -4,29 +4,24 @@ import config.Headers;
 import config.Urls;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
-import models.BodyListExperiments;
+import models.BodyCreatesExperiments;
 
 import static io.restassured.RestAssured.given;
 
-public class RequestListExperiments {
+public class RequestCreatesExperiments {
 
     private static String path = "/experiments";
 
-    public static ValidatableResponse listExperiments(BodyListExperiments bodyListExperiments, String token) {
+    public static ValidatableResponse createsExperiments(BodyCreatesExperiments bodyCreatesExperiments, String token) {
 
         return given()
                 .log()
                 .all()
                 .contentType(ContentType.JSON)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
-                .param("page", bodyListExperiments.getPage())
-                .param("size", bodyListExperiments.getSize())
-                .param("sort", bodyListExperiments.getSort())
-                .when()
-                .get(Urls.ROOT_EXPERIMENTS.getUrl() + path)
+                .body(bodyCreatesExperiments)
+                .post(Urls.ROOT_EXPERIMENTS.getUrl() + path)
                 .then()
                 .log().all();
     }
-
-
 }
