@@ -26,9 +26,9 @@ public class BodyListExperiments {
 
     public BodyListExperiments getListExperimentsInvalid(){
         faker = new Faker(new Locale("pt-BR"));
-        page = faker.options().option("0");
-        size = "0";
-        sort = "00000";
+        page = "PAGESTRING";
+        size = "SIZESTRING";
+        sort = "";
         return this;
     }
 }

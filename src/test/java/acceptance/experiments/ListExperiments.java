@@ -28,32 +28,21 @@ public class ListExperiments {
     }
 
     @Test
-    public void validateListExperimentsReturnUnauthorized() {
+    public void validateListExperimentsReturnStatusCode401() {
         bodyListExperiments = new BodyListExperiments();
         token = InvalidToken;
-        response = RequestListExperiments.listExperiments(bodyListExperiments.getListExperimentsInvalid(),token);
+        response = RequestListExperiments.listExperiments(bodyListExperiments.getListExperimentValid(),token);
         response.statusCode(HttpStatus.SC_UNAUTHORIZED);
-        response.body("title", notNullValue());
     }
 
     @Test
-    public void validateListExperimentsReturnStatusCode404() {
+    public void validateListExperimentsReturnStatusCode400() {
         bodyListExperiments = new BodyListExperiments();
         token = RequestToken.captureToken();
         response = RequestListExperiments.listExperiments(bodyListExperiments.getListExperimentsInvalid(),token);
-        response.statusCode(HttpStatus.SC_NOT_FOUND);
+        response.statusCode(HttpStatus.SC_BAD_REQUEST);
         response.body(notNullValue());
     }
-
-    @Test
-    public void validateListExperimentsReturnErrorMensage() {
-        bodyListExperiments = new BodyListExperiments();
-        token = RequestToken.captureToken();
-        response = RequestListExperiments.listExperiments(bodyListExperiments.getListExperimentsInvalid(),token);
-        response.statusCode(HttpStatus.SC_OK);
-        response.body("title", notNullValue());
-    }
-
 
 }
 
