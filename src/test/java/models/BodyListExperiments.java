@@ -11,24 +11,11 @@ import java.util.Locale;
 public class BodyListExperiments {
 
     @JsonIgnore
-    private Faker faker;
-    private String page;
-    private String size;
-    private String sort;
+    private static Faker faker;
+    private String InvalidParam;
 
-    public BodyListExperiments getListExperimentValid(){
-        faker = new Faker(new Locale("pt-BR"));
-        page = faker.options().option("0", "1", "2", "3");
-        size = "10";
-        sort = "creationDate%2Cdesc";
-        return this;
-    }
-
-    public BodyListExperiments getListExperimentsInvalid(){
-        faker = new Faker(new Locale("pt-BR"));
-        page = "PAGESTRING";
-        size = "SIZESTRING";
-        sort = "";
+    public BodyListExperiments listExperimentsInvalid(){
+        InvalidParam = "";
         return this;
     }
 }
