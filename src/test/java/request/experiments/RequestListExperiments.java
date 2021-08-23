@@ -12,7 +12,6 @@ import static io.restassured.RestAssured.given;
 public class RequestListExperiments {
 
     private static String path = "/experiments";
-    public static ResponseCreatesExperiments responseCreatesExperimentsReturn;
 
     public static ValidatableResponse listExperiments(String token) {
 
@@ -27,12 +26,5 @@ public class RequestListExperiments {
                 .log().all();
     }
 
-
-    public static ResponseCreatesExperiments infoForExperimentCreate(ResponseCreatesExperiments responseCreatesExperiments){
-        responseCreatesExperimentsReturn = new ResponseCreatesExperiments();
-        responseCreatesExperimentsReturn.setId(responseCreatesExperiments.getId());
-            responseCreatesExperimentsReturn.setName(responseCreatesExperiments.getName());
-            return responseCreatesExperimentsReturn;
-    }
 
 }

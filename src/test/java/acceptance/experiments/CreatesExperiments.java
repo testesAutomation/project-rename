@@ -1,6 +1,8 @@
 package acceptance.experiments;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import config.ReadAndWriteJSON;
 import io.restassured.response.ValidatableResponse;
 import models.BodyCreatesExperiments;
 import models.ResponseCreatesExperiments;
@@ -9,6 +11,9 @@ import org.testng.annotations.Test;
 import request.experiments.RequestCreatesExperiments;
 import request.experiments.RequestListExperiments;
 import request.experiments.RequestToken;
+
+import java.io.IOException;
+
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 public class CreatesExperiments {
@@ -20,14 +25,15 @@ public class CreatesExperiments {
     public String InvalidToken = "123";
 
     @Test
-    public void validateCreatesExperimentsReturnStatusCode200() {
+    public void validateCreatesExperimentsReturnStatusCode200() throws IOException {
         bodyCreatesExperiments = new BodyCreatesExperiments();
         token = RequestToken.captureToken();
         response = RequestCreatesExperiments.createsExperiments(bodyCreatesExperiments.validBody(),token);
         response.statusCode(HttpStatus.SC_OK);
         response.body(notNullValue());
         responseCreatesExperiments = response.extract().as(ResponseCreatesExperiments.class);
-        RequestListExperiments.infoForExperimentCreate(responseCreatesExperiments);
+        ObjectMapper Obj = new ObjectMapper();
+        ReadAndWriteJSON.writeJson(Obj.writeValueAsString(responseCreatesExperiments), "Creates");
     }
 
     @Test

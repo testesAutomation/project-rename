@@ -1,15 +1,19 @@
 package acceptance.experiments;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import config.ReadAndWriteJSON;
 import io.restassured.response.ValidatableResponse;
 import models.BodyListExperiments;
 import models.ResponseCreatesExperiments;
 import models.ResponseListExperiment;
 import org.apache.http.HttpStatus;
+import org.json.simple.parser.ParseException;
 import org.junit.FixMethodOrder;
 import org.testng.annotations.Test;
 import org.junit.runners.MethodSorters;
 import request.experiments.RequestListExperiments;
 import request.experiments.RequestToken;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -20,38 +24,31 @@ public class ListExperiments {
     public ValidatableResponse response;
     public BodyListExperiments bodyListExperiments;
     public List<ResponseListExperiment> responseListExperiment;
+    public ResponseCreatesExperiments responseCreatesExperiments;
     public String InvalidToken = "123";
     String token;
 
     @Test
-    public void validateListExperimentsReturnStatusCode200() {
+    public void validateListExperimentsReturnStatusCode200() throws IOException, ParseException {
         bodyListExperiments = new BodyListExperiments();
         token = RequestToken.captureToken();
         response = RequestListExperiments.listExperiments(token);
         response.statusCode(HttpStatus.SC_OK);
         response.body(notNullValue());
-        response.assertThat().extract().jsonPath().get("id")
-                .equals(RequestListExperiments.responseCreatesExperimentsReturn.getId());
-        response.assertThat().extract().jsonPath().get("name")
-                .equals(RequestListExperiments.responseCreatesExperimentsReturn.getName());
+        responseCreatesExperiments = ResponseCreatesExperiments.class.cast(ReadAndWriteJSON.readJson("Creates"));
+        response.assertThat().extract().jsonPath().getList("id")
+                .contains(responseCreatesExperiments.getId());
+        response.assertThat().extract().jsonPath().getList("name")
+                .contains(responseCreatesExperiments.getName());
     }
 
     @Test
     public void validateListExperimentsReturnStatusCode401() {
         bodyListExperiments = new BodyListExperiments();
-        token = InvalidToken;
-        response = RequestListExperiments.listExperiments(token);
+        response = RequestListExperiments.listExperiments(InvalidToken);
         response.statusCode(HttpStatus.SC_UNAUTHORIZED);
     }
 
-    @Test
-    public void validateListExperimentsReturnStatusCode400() {
-        bodyListExperiments = new BodyListExperiments();
-        token = RequestToken.captureToken();
-        response = RequestListExperiments.listExperiments(token);
-        response.statusCode(HttpStatus.SC_BAD_REQUEST);
-        response.body(notNullValue());
-    }
 
 }
 
