@@ -11,7 +11,6 @@ import java.io.IOException;
 public class ReadAndWriteJSON {
 
     public static void writeJson(String values, String nameFile) throws IOException {
-
         FileWriter file = new FileWriter("src/test/"+ nameFile +".json");
         file.write(values);
         file.flush();

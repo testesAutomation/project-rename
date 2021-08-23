@@ -37,7 +37,7 @@ public class ListExperiments {
         response = RequestListExperiments.listExperiments(token);
         response.statusCode(HttpStatus.SC_OK);
         response.body(notNullValue());
-        responseCreatesExperiments  = objectMapper.readValue(ReadAndWriteJSON.readJson("Creates"), ResponseCreatesExperiments.class);
+        responseCreatesExperiments = objectMapper.readValue(ReadAndWriteJSON.readJson("Creates"), ResponseCreatesExperiments.class);
         response.assertThat().extract().jsonPath().getList("id")
                 .contains(responseCreatesExperiments.getId());
         response.assertThat().extract().jsonPath().getList("name")
