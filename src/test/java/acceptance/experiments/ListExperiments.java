@@ -5,7 +5,7 @@ import models.ResponseCreatesExperiments;
 import models.ResponseListExperiment;
 import org.apache.http.HttpStatus;
 import org.junit.FixMethodOrder;
-import org.junit.Test;
+import org.testng.annotations.Test;
 import org.junit.runners.MethodSorters;
 import request.experiments.RequestListExperiments;
 import request.experiments.RequestToken;

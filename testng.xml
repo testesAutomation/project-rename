@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite Experiments" verbose="1" >
+    <test name="Create, List, Update and Delete">
+        <classes>
+            <class name="acceptance.experiments.CreatesExperiments"/>
+            <class name="acceptance.experiments.ListExperiments"/>
+        </classes>
+    </test>
+</suite>

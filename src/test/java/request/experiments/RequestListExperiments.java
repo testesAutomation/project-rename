@@ -12,8 +12,7 @@ import static io.restassured.RestAssured.given;
 public class RequestListExperiments {
 
     private static String path = "/experiments";
-    public static ResponseCreatesExperiments responseCreatesExperimentsReturn = new ResponseCreatesExperiments();
-
+    public static ResponseCreatesExperiments responseCreatesExperimentsReturn;
 
     public static ValidatableResponse listExperiments(String token) {
 
@@ -30,7 +29,8 @@ public class RequestListExperiments {
 
 
     public static ResponseCreatesExperiments infoForExperimentCreate(ResponseCreatesExperiments responseCreatesExperiments){
-            responseCreatesExperimentsReturn.setId(responseCreatesExperiments.getId());
+        responseCreatesExperimentsReturn = new ResponseCreatesExperiments();
+        responseCreatesExperimentsReturn.setId(responseCreatesExperiments.getId());
             responseCreatesExperimentsReturn.setName(responseCreatesExperiments.getName());
             return responseCreatesExperimentsReturn;
     }
