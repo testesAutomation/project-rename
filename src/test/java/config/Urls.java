@@ -2,8 +2,8 @@ package config;
 
 public enum Urls {
 
-    TOKEN ("https://experian-brb.oktapreview.com/oauth2/ausqshum9bHg4fRzc0h7/v1/token"),
-    ROOT_EXPERIMENTS ("https://amt-homolog.datalabserasaexperian.com.br/api/v2");
+    TOKEN (""),
+    ROOT_EXPERIMENTS ("");
 
     private String url;
 

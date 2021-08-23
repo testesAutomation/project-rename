@@ -31,11 +31,13 @@ public class ListExperiments {
     @Test
     public void validateListExperimentsReturnStatusCode200() throws IOException, ParseException {
         bodyListExperiments = new BodyListExperiments();
+        ObjectMapper objectMapper = new ObjectMapper();
+
         token = RequestToken.captureToken();
         response = RequestListExperiments.listExperiments(token);
         response.statusCode(HttpStatus.SC_OK);
         response.body(notNullValue());
-        responseCreatesExperiments = ResponseCreatesExperiments.class.cast(ReadAndWriteJSON.readJson("Creates"));
+        responseCreatesExperiments  = objectMapper.readValue(ReadAndWriteJSON.readJson("Creates"), ResponseCreatesExperiments.class);
         response.assertThat().extract().jsonPath().getList("id")
                 .contains(responseCreatesExperiments.getId());
         response.assertThat().extract().jsonPath().getList("name")

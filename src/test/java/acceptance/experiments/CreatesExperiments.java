@@ -31,9 +31,7 @@ public class CreatesExperiments {
         response = RequestCreatesExperiments.createsExperiments(bodyCreatesExperiments.validBody(),token);
         response.statusCode(HttpStatus.SC_OK);
         response.body(notNullValue());
-        responseCreatesExperiments = response.extract().as(ResponseCreatesExperiments.class);
-        ObjectMapper Obj = new ObjectMapper();
-        ReadAndWriteJSON.writeJson(Obj.writeValueAsString(responseCreatesExperiments), "Creates");
+        ReadAndWriteJSON.writeJson(response.toString(), "Creates");
     }
 
     @Test

@@ -17,11 +17,10 @@ public class ReadAndWriteJSON {
         file.flush();
     }
 
-    public static Object readJson(String fileName) throws IOException, ParseException {
+    public static String readJson(String fileName) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         FileReader reader = new FileReader("src/test/"+ fileName +".json");
-        Object obj = parser.parse(reader);
-        return obj;
+        return parser.parse(reader).toString();
     }
 
 
