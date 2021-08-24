@@ -8,11 +8,11 @@ import models.ResponseListExperiment;
 import org.apache.http.HttpStatus;
 import org.json.simple.parser.ParseException;
 import org.junit.FixMethodOrder;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.junit.runners.MethodSorters;
 import request.experiments.RequestListExperiments;
 import request.experiments.RequestToken;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -24,6 +24,7 @@ public class ListExperiments {
     public ValidatableResponse response;
     public BodyListExperiments bodyListExperiments;
     public List<ResponseListExperiment> responseListExperiment;
+    public List<String> returnListAllIdExperiments, returnListAllNamesExperiments;
     public ResponseCreatesExperiments responseCreatesExperiments;
     public String InvalidToken = "123";
     String token;
@@ -32,16 +33,15 @@ public class ListExperiments {
     public void validateListExperimentsReturnStatusCode200() throws IOException, ParseException {
         bodyListExperiments = new BodyListExperiments();
         ObjectMapper objectMapper = new ObjectMapper();
-
         token = RequestToken.captureToken();
         response = RequestListExperiments.listExperiments(token);
         response.statusCode(HttpStatus.SC_OK);
-        response.body(notNullValue());
-        responseCreatesExperiments = objectMapper.readValue(ReadAndWriteJSON.readJson("Creates"), ResponseCreatesExperiments.class);
-        response.assertThat().extract().jsonPath().getList("id")
-                .contains(responseCreatesExperiments.getId());
-        response.assertThat().extract().jsonPath().getList("name")
-                .contains(responseCreatesExperiments.getName());
+        returnListAllIdExperiments = response.extract().jsonPath().getList("id");
+        returnListAllNamesExperiments = response.extract().jsonPath().getList("name");
+        responseCreatesExperiments  = objectMapper.readValue(ReadAndWriteJSON.readJson("Creates"), ResponseCreatesExperiments.class);
+        Assert.assertEquals(returnListAllIdExperiments.contains(responseCreatesExperiments.getId()), true);
+        Assert.assertEquals(returnListAllNamesExperiments.contains(responseCreatesExperiments.getName()), true);
+
     }
 
     @Test

@@ -10,14 +10,13 @@ import lombok.Setter;
 public class ResponseCreatesExperiments {
 
     @JsonIgnore
-    private Faker faker;
     private String id;
     private String name;
     private String creationDate;
     private String lastUpdateDate;
     private String image;
     private String description;
-    private String datasetCount;
+    private int datasetCount;
 
 
 }
