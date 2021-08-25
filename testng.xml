@@ -5,6 +5,9 @@
         <classes>
             <class name="acceptance.experiments.CreatesExperiments"/>
             <class name="acceptance.experiments.ListExperiments"/>
+            <class name="acceptance.experiments.GetExperimntById"/>
+            <class name="acceptance.experiments.UpdateExperiment"/>
+            <class name="acceptance.experiments.DeleteExperiment"/>
         </classes>
     </test>
 </suite>

@@ -1,18 +1,19 @@
 package acceptance.experiments;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import config.ReadAndWriteJSON;
 import io.restassured.response.ValidatableResponse;
 import models.BodyListExperiments;
 import models.ResponseCreatesExperiments;
 import models.ResponseListExperiment;
 import org.apache.http.HttpStatus;
+import org.hamcrest.CoreMatchers;
 import org.json.simple.parser.ParseException;
 import org.junit.FixMethodOrder;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.junit.runners.MethodSorters;
-import request.experiments.RequestListExperiments;
 import request.experiments.RequestToken;
+import request.experiments.RequestsExperiments;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -23,31 +24,28 @@ public class ListExperiments {
 
     public ValidatableResponse response;
     public BodyListExperiments bodyListExperiments;
-    public List<ResponseListExperiment> responseListExperiment;
-    public List<String> returnListAllIdExperiments, returnListAllNamesExperiments;
-    public ResponseCreatesExperiments responseCreatesExperiments;
     public String InvalidToken = "123";
     String token;
 
     @Test
     public void validateListExperimentsReturnStatusCode200() throws IOException, ParseException {
-        bodyListExperiments = new BodyListExperiments();
-        ObjectMapper objectMapper = new ObjectMapper();
         token = RequestToken.captureToken();
-        response = RequestListExperiments.listExperiments(token);
+        response = RequestsExperiments.listExperiments(token);
         response.statusCode(HttpStatus.SC_OK);
-        returnListAllIdExperiments = response.extract().jsonPath().getList("id");
-        returnListAllNamesExperiments = response.extract().jsonPath().getList("name");
-        responseCreatesExperiments  = objectMapper.readValue(ReadAndWriteJSON.readJson("Creates"), ResponseCreatesExperiments.class);
-        Assert.assertEquals(returnListAllIdExperiments.contains(responseCreatesExperiments.getId()), true);
-        Assert.assertEquals(returnListAllNamesExperiments.contains(responseCreatesExperiments.getName()), true);
+        response.body("items.id", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getId()));
+        response.body("items.name", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getName()));
+        response.body("items.creationDate", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getCreationDate()));
+        response.body("items.lastUpdateDate", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getLastUpdateDate()));
+        response.body("items.image", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getImage()));
+        response.body("items.description", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getDescription()));
+        response.body("items.datasetCount", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getDatasetCount()));
 
     }
 
     @Test
     public void validateListExperimentsReturnStatusCode401() {
         bodyListExperiments = new BodyListExperiments();
-        response = RequestListExperiments.listExperiments(InvalidToken);
+        response = RequestsExperiments.listExperiments(InvalidToken);
         response.statusCode(HttpStatus.SC_UNAUTHORIZED);
     }
 

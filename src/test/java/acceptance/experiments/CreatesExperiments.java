@@ -1,13 +1,12 @@
 package acceptance.experiments;
 
-import config.ReadAndWriteJSON;
 import io.restassured.response.ValidatableResponse;
 import models.BodyCreatesExperiments;
 import models.ResponseCreatesExperiments;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
-import request.experiments.RequestCreatesExperiments;
 import request.experiments.RequestToken;
+import request.experiments.RequestsExperiments;
 
 import java.io.IOException;
 
@@ -25,17 +24,16 @@ public class CreatesExperiments {
     public void validateCreatesExperimentsReturnStatusCode200() throws IOException {
         bodyCreatesExperiments = new BodyCreatesExperiments();
         token = RequestToken.captureToken();
-        response = RequestCreatesExperiments.createsExperiments(bodyCreatesExperiments.validBody(),token);
+        response = RequestsExperiments.createsExperiments(bodyCreatesExperiments.validBody(),token);
         response.statusCode(HttpStatus.SC_OK);
         response.body(notNullValue());
-        ReadAndWriteJSON.writeJson(response.extract().asString(), "Creates");
     }
 
     @Test
     public void validateCreatesExperimentsReturnStatusCode401() {
         bodyCreatesExperiments = new BodyCreatesExperiments();
         token = InvalidToken;
-        response = RequestCreatesExperiments.createsExperiments(bodyCreatesExperiments.validBody(),token);
+        response = RequestsExperiments.createsExperiments(bodyCreatesExperiments.validBody(),token);
         response.statusCode(HttpStatus.SC_UNAUTHORIZED);
         response.body(notNullValue());
     }
@@ -44,7 +42,7 @@ public class CreatesExperiments {
     public void validateCreatesExperimentsReturnStatusCode400() {
         bodyCreatesExperiments = new BodyCreatesExperiments();
         token = RequestToken.captureToken();
-        response = RequestCreatesExperiments.createsExperiments(bodyCreatesExperiments.invalidBody(),token);
+        response = RequestsExperiments.createsExperiments(bodyCreatesExperiments.invalidBody(),token);
         response.statusCode(HttpStatus.SC_BAD_REQUEST);
         response.body(notNullValue());
     }

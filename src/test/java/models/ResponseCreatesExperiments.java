@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 public class ResponseCreatesExperiments {
 
-    @JsonIgnore
     private String id;
     private String name;
     private String creationDate;

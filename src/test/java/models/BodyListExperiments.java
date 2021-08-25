@@ -11,7 +11,6 @@ import java.util.Locale;
 public class BodyListExperiments {
 
     @JsonIgnore
-    private static Faker faker;
     private String InvalidParam;
 
     public BodyListExperiments listExperimentsInvalid(){
