@@ -4,7 +4,6 @@ import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
 import org.hamcrest.CoreMatchers;
 import org.json.simple.parser.ParseException;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import request.experiments.RequestToken;
 import request.experiments.RequestsExperiments;
@@ -13,13 +12,13 @@ import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
 
-public class GetExperimntById {
+public class GetExperimentById {
 
     public ValidatableResponse response;
     public String InvalidToken = "123";
     String token;
     @Test
-    public void validateListExperimentsByIdReturnStatusCode200() throws IOException, ParseException {
+    public void validateGetExperimentByIdReturnStatusCode200() throws IOException, ParseException {
         token = RequestToken.captureToken();
         response = RequestsExperiments.listExperimentsById(RequestsExperiments.responseCreatesExperiments, token);
         response.statusCode(HttpStatus.SC_OK);
@@ -33,7 +32,7 @@ public class GetExperimntById {
     }
 
     @Test
-    public void validateListExperimentsByIdReturnStatusCode401() {
+    public void validateGetExperimentByIdReturnStatusCode401() {
         token = InvalidToken;
         response = RequestsExperiments.listExperimentsById(RequestsExperiments.responseCreatesExperiments, token);
         response.statusCode(HttpStatus.SC_UNAUTHORIZED);

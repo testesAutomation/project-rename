@@ -1,23 +1,18 @@
 package acceptance.experiments;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+
 import io.restassured.response.ValidatableResponse;
 import models.BodyListExperiments;
-import models.ResponseCreatesExperiments;
-import models.ResponseListExperiment;
 import org.apache.http.HttpStatus;
 import org.hamcrest.CoreMatchers;
 import org.json.simple.parser.ParseException;
 import org.junit.FixMethodOrder;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 import org.junit.runners.MethodSorters;
+import org.testng.annotations.Test;
 import request.experiments.RequestToken;
 import request.experiments.RequestsExperiments;
 
 import java.io.IOException;
-import java.util.List;
-
-import static org.hamcrest.CoreMatchers.notNullValue;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ListExperiments {

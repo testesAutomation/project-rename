@@ -1,11 +1,8 @@
 package acceptance.experiments;
 
 import io.restassured.response.ValidatableResponse;
-import models.BodyCreatesExperiments;
 import models.ResponseCreatesExperiments;
 import org.apache.http.HttpStatus;
-import org.hamcrest.CoreMatchers;
-import org.json.simple.parser.ParseException;
 import org.testng.annotations.Test;
 import request.experiments.RequestToken;
 import request.experiments.RequestsExperiments;

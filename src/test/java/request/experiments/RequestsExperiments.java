@@ -6,9 +6,6 @@ import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import models.BodyCreatesExperiments;
 import models.ResponseCreatesExperiments;
-import models.ResponseViaCep;
-
-import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
@@ -31,7 +28,9 @@ public class RequestsExperiments {
                 .then()
                 .log().all();
 
-        responseCreatesExperiments = response.extract().as(ResponseCreatesExperiments.class);
+        if(response.extract().statusCode() == 200) {
+            responseCreatesExperiments = response.extract().as(ResponseCreatesExperiments.class);
+        }
         return response;
     }
 
@@ -73,8 +72,10 @@ public class RequestsExperiments {
                 .then()
                 .log().all();
 
-        updateResponseCreatesExperiments = response.extract().as(ResponseCreatesExperiments.class);
-        responseCreatesExperiments = updateResponseCreatesExperiments;
+        if(response.extract().statusCode() == 200) {
+            updateResponseCreatesExperiments = response.extract().as(ResponseCreatesExperiments.class);
+            responseCreatesExperiments = updateResponseCreatesExperiments;
+        }
         return response;
     }
 
