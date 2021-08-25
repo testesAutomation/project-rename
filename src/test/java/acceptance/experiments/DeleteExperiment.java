@@ -20,13 +20,13 @@ public class DeleteExperiment {
     @Test
     public void validateDeleteExperimentsByIdReturnStatusCode200(){
         token = RequestToken.captureToken();
-        response = RequestsExperiments.deleteExperiments(RequestsExperiments.responseCreatesExperiments.get(0), token);
+        response = RequestsExperiments.deleteExperiments(RequestsExperiments.responseCreatesExperiments, token);
         response.statusCode(HttpStatus.SC_OK);
     }
 
     @Test
     public void validateDeleteExperimentsByIdReturnStatusCode401(){
-        response = RequestsExperiments.deleteExperiments(RequestsExperiments.responseCreatesExperiments.get(0), InvalidToken);
+        response = RequestsExperiments.deleteExperiments(RequestsExperiments.responseCreatesExperiments, InvalidToken);
         response.statusCode(HttpStatus.SC_UNAUTHORIZED);
     }
 
@@ -34,7 +34,7 @@ public class DeleteExperiment {
     public void validateDeleteExperimentsByIdReturnStatusCode404(){
         token = RequestToken.captureToken();
         responseCreatesExperiments = new ResponseCreatesExperiments();
-        response = RequestsExperiments.deleteExperiments(responseCreatesExperiments, InvalidToken);
+        response = RequestsExperiments.deleteExperiments(responseCreatesExperiments, token);
         response.statusCode(HttpStatus.SC_NOT_FOUND);
     }
 

@@ -32,13 +32,13 @@ public class ListExperiments {
         token = RequestToken.captureToken();
         response = RequestsExperiments.listExperiments(token);
         response.statusCode(HttpStatus.SC_OK);
-        response.body("items.id", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getId()));
-        response.body("items.name", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getName()));
-        response.body("items.creationDate", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getCreationDate()));
-        response.body("items.lastUpdateDate", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getLastUpdateDate()));
-        response.body("items.image", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getImage()));
-        response.body("items.description", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getDescription()));
-        response.body("items.datasetCount", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getDatasetCount()));
+        response.body("items.id", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getId()));
+        response.body("items.name", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getName()));
+        response.body("items.creationDate", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getCreationDate()));
+        response.body("items.lastUpdateDate", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getLastUpdateDate()));
+        response.body("items.image", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getImage()));
+        response.body("items.description", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getDescription()));
+        response.body("items.datasetCount", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getDatasetCount()));
 
     }
 

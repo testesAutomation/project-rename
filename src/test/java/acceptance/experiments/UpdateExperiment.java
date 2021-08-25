@@ -25,7 +25,7 @@ public class UpdateExperiment {
     public void validateUpdateExperimentsByIdReturnStatusCode200() throws IOException, ParseException {
         token = RequestToken.captureToken();
         newBodyForUpdate = new BodyCreatesExperiments().validBody();
-        responseCreatesExperiments = RequestsExperiments.responseCreatesExperiments.get(0);
+        responseCreatesExperiments = RequestsExperiments.responseCreatesExperiments;
         responseCreatesExperiments.setName(newBodyForUpdate.getName());
         response = RequestsExperiments.putExperiments(responseCreatesExperiments, token);
         response.statusCode(HttpStatus.SC_OK);
@@ -42,7 +42,7 @@ public class UpdateExperiment {
     public void validateUpdateExperimentsByIdReturnStatusCode400() throws IOException, ParseException {
         token = RequestToken.captureToken();
         newBodyForUpdate = new BodyCreatesExperiments().validBody();
-        responseCreatesExperiments = RequestsExperiments.responseCreatesExperiments.get(0);
+        responseCreatesExperiments = RequestsExperiments.responseCreatesExperiments;
         responseCreatesExperiments.setName("");
         response = RequestsExperiments.putExperiments(responseCreatesExperiments, token);
         response.statusCode(HttpStatus.SC_BAD_REQUEST);
@@ -51,7 +51,7 @@ public class UpdateExperiment {
 
     @Test
     public void validateUpdateExperimentsByIdReturnStatusCode401()  {
-        responseCreatesExperiments = RequestsExperiments.responseCreatesExperiments.get(0);
+        responseCreatesExperiments = RequestsExperiments.responseCreatesExperiments;
         response = RequestsExperiments.putExperiments(responseCreatesExperiments, InvalidToken);
         response.statusCode(HttpStatus.SC_UNAUTHORIZED);
 

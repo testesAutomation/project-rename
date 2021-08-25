@@ -16,7 +16,7 @@ public class RequestsExperiments {
 
     private static String path = "/experiments";
 
-    public static List<ResponseCreatesExperiments> responseCreatesExperiments, updateResponseCreatesExperiments;
+    public static ResponseCreatesExperiments responseCreatesExperiments, updateResponseCreatesExperiments;
     static ValidatableResponse response;
 
     public static ValidatableResponse createsExperiments(BodyCreatesExperiments bodyCreatesExperiments, String token) {
@@ -31,7 +31,7 @@ public class RequestsExperiments {
                 .then()
                 .log().all();
 
-        responseCreatesExperiments = response.extract().jsonPath().getList("", ResponseCreatesExperiments.class);
+        responseCreatesExperiments = response.extract().as(ResponseCreatesExperiments.class);
         return response;
     }
 
@@ -73,7 +73,7 @@ public class RequestsExperiments {
                 .then()
                 .log().all();
 
-        updateResponseCreatesExperiments = response.extract().jsonPath().getList("", ResponseCreatesExperiments.class);
+        updateResponseCreatesExperiments = response.extract().as(ResponseCreatesExperiments.class);
         responseCreatesExperiments = updateResponseCreatesExperiments;
         return response;
     }

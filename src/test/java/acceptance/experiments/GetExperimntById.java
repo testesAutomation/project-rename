@@ -21,21 +21,21 @@ public class GetExperimntById {
     @Test
     public void validateListExperimentsByIdReturnStatusCode200() throws IOException, ParseException {
         token = RequestToken.captureToken();
-        response = RequestsExperiments.listExperimentsById(RequestsExperiments.responseCreatesExperiments.get(0), token);
+        response = RequestsExperiments.listExperimentsById(RequestsExperiments.responseCreatesExperiments, token);
         response.statusCode(HttpStatus.SC_OK);
-        response.body("id", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getId()));
-        response.body(".name", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getName()));
-        response.body("creationDate", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getCreationDate()));
-        response.body("lastUpdateDate", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getLastUpdateDate()));
-        response.body("image", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getImage()));
-        response.body("description", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getDescription()));
-        response.body("datasetCount", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.get(0).getDatasetCount()));
+        response.body("id", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getId()));
+        response.body(".name", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getName()));
+        response.body("creationDate", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getCreationDate()));
+        response.body("lastUpdateDate", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getLastUpdateDate()));
+        response.body("image", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getImage()));
+        response.body("description", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getDescription()));
+        response.body("datasetCount", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getDatasetCount()));
     }
 
     @Test
     public void validateListExperimentsByIdReturnStatusCode401() {
         token = InvalidToken;
-        response = RequestsExperiments.listExperimentsById(RequestsExperiments.responseCreatesExperiments.get(0), token);
+        response = RequestsExperiments.listExperimentsById(RequestsExperiments.responseCreatesExperiments, token);
         response.statusCode(HttpStatus.SC_UNAUTHORIZED);
         response.body(notNullValue());
     }
