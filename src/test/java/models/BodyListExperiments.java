@@ -10,7 +10,6 @@ import java.util.Locale;
 @Setter
 public class BodyListExperiments {
 
-    @JsonIgnore
     private String InvalidParam;
 
     public BodyListExperiments listExperimentsInvalid(){

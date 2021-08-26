@@ -22,24 +22,23 @@ public class UpdateExperiment {
     String token;
 
     @Test
-    public void validateUpdateExperimentsByIdReturnStatusCode200() throws IOException, ParseException {
+    public void validateUpdateExperimentsByIdReturnStatusCode200()  {
         token = RequestToken.captureToken();
         newBodyForUpdate = new BodyCreatesExperiments().validBody();
         responseCreatesExperiments = RequestsExperiments.responseCreatesExperiments;
         responseCreatesExperiments.setName(newBodyForUpdate.getName());
         response = RequestsExperiments.putExperiments(responseCreatesExperiments, token);
         response.statusCode(HttpStatus.SC_OK);
-        response.body("id", CoreMatchers.hasItem(responseCreatesExperiments.getId()));
-        response.body("name", CoreMatchers.hasItem(responseCreatesExperiments.getName()));
-        response.body("creationDate", CoreMatchers.hasItem(responseCreatesExperiments.getCreationDate()));
-        response.body("image", CoreMatchers.hasItem(responseCreatesExperiments.getImage()));
-        response.body("description", CoreMatchers.hasItem(responseCreatesExperiments.getDescription()));
+        response.body("name", CoreMatchers.hasItem(responseCreatesExperiments.getName().replace("\"", "")));
+        response.body("creationDate", CoreMatchers.hasItem(responseCreatesExperiments.getCreationDate().replace("\"", "")));
+        response.body("image", CoreMatchers.hasItem(responseCreatesExperiments.getImage().replace("\"", "")));
+        response.body("description", CoreMatchers.hasItem(responseCreatesExperiments.getDescription().replace("\"", "")));
         response.body("datasetCount", CoreMatchers.hasItem(responseCreatesExperiments.getDatasetCount()));
 
     }
 
     @Test
-    public void validateUpdateExperimentsByIdReturnStatusCode400() throws IOException, ParseException {
+    public void validateUpdateExperimentsByIdReturnStatusCode400()  {
         token = RequestToken.captureToken();
         newBodyForUpdate = new BodyCreatesExperiments().validBody();
         responseCreatesExperiments = RequestsExperiments.responseCreatesExperiments;

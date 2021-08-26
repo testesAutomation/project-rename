@@ -10,7 +10,6 @@ import java.util.Locale;
 @Setter
 public class BodyToken {
 
-    @JsonIgnore
     private String client_id;
     private String client_secret;
     private String grant_type;

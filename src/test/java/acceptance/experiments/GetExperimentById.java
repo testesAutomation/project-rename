@@ -18,16 +18,16 @@ public class GetExperimentById {
     public String InvalidToken = "123";
     String token;
     @Test
-    public void validateGetExperimentByIdReturnStatusCode200() throws IOException, ParseException {
+    public void validateGetExperimentByIdReturnStatusCode200()  {
         token = RequestToken.captureToken();
         response = RequestsExperiments.listExperimentsById(RequestsExperiments.responseCreatesExperiments, token);
         response.statusCode(HttpStatus.SC_OK);
-        response.body("id", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getId()));
-        response.body(".name", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getName()));
-        response.body("creationDate", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getCreationDate()));
-        response.body("lastUpdateDate", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getLastUpdateDate()));
-        response.body("image", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getImage()));
-        response.body("description", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getDescription()));
+        response.body("id", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getId().replace("\"", "")));
+        response.body("name", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getName().replace("\"", "")));
+        response.body("creationDate", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getCreationDate().replace("\"", "")));
+        response.body("lastUpdateDate", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getLastUpdateDate().replace("\"", "")));
+        response.body("image", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getImage().replace("\"", "")));
+        response.body("description", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getDescription().replace("\"", "")));
         response.body("datasetCount", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getDatasetCount()));
     }
 
