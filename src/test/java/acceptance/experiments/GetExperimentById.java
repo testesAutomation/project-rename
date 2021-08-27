@@ -22,13 +22,12 @@ public class GetExperimentById {
         token = RequestToken.captureToken();
         response = RequestsExperiments.listExperimentsById(RequestsExperiments.responseCreatesExperiments, token);
         response.statusCode(HttpStatus.SC_OK);
-        response.body("id", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getId().replace("\"", "")));
-        response.body("name", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getName().replace("\"", "")));
-        response.body("creationDate", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getCreationDate().replace("\"", "")));
-        response.body("lastUpdateDate", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getLastUpdateDate().replace("\"", "")));
-        response.body("image", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getImage().replace("\"", "")));
-        response.body("description", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getDescription().replace("\"", "")));
-        response.body("datasetCount", CoreMatchers.hasItem(RequestsExperiments.responseCreatesExperiments.getDatasetCount()));
+        response.body("id", CoreMatchers.containsString(RequestsExperiments.responseCreatesExperiments.getId()));
+        response.body("name", CoreMatchers.containsString(RequestsExperiments.responseCreatesExperiments.getName()));
+        response.body("creationDate", CoreMatchers.containsString(RequestsExperiments.responseCreatesExperiments.getCreationDate()));
+        response.body("lastUpdateDate", CoreMatchers.containsString(RequestsExperiments.responseCreatesExperiments.getLastUpdateDate()));
+        response.body("image", CoreMatchers.containsString(RequestsExperiments.responseCreatesExperiments.getImage()));
+        response.body("description", CoreMatchers.containsString(RequestsExperiments.responseCreatesExperiments.getDescription()));
     }
 
     @Test

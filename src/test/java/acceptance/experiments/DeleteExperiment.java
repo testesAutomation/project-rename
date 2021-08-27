@@ -28,11 +28,11 @@ public class DeleteExperiment {
     }
 
     @Test
-    public void validateDeleteExperimentsByIdReturnStatusCode404(){
+    public void validateDeleteExperimentsByIdReturnStatusCode400(){
         token = RequestToken.captureToken();
         responseCreatesExperiments = new ResponseCreatesExperiments();
         response = RequestsExperiments.deleteExperiments(responseCreatesExperiments, token);
-        response.statusCode(HttpStatus.SC_NOT_FOUND);
+        response.statusCode(HttpStatus.SC_BAD_REQUEST);
     }
 
 }

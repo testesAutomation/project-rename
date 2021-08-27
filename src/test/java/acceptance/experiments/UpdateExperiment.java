@@ -29,12 +29,10 @@ public class UpdateExperiment {
         responseCreatesExperiments.setName(newBodyForUpdate.getName());
         response = RequestsExperiments.putExperiments(responseCreatesExperiments, token);
         response.statusCode(HttpStatus.SC_OK);
-        response.body("name", CoreMatchers.hasItem(responseCreatesExperiments.getName().replace("\"", "")));
-        response.body("creationDate", CoreMatchers.hasItem(responseCreatesExperiments.getCreationDate().replace("\"", "")));
-        response.body("image", CoreMatchers.hasItem(responseCreatesExperiments.getImage().replace("\"", "")));
-        response.body("description", CoreMatchers.hasItem(responseCreatesExperiments.getDescription().replace("\"", "")));
-        response.body("datasetCount", CoreMatchers.hasItem(responseCreatesExperiments.getDatasetCount()));
-
+        response.body("name", CoreMatchers.containsString(responseCreatesExperiments.getName()));
+        response.body("creationDate", CoreMatchers.containsString(responseCreatesExperiments.getCreationDate()));
+        response.body("image", CoreMatchers.containsString(responseCreatesExperiments.getImage()));
+        response.body("description", CoreMatchers.containsString(responseCreatesExperiments.getDescription()));
     }
 
     @Test
