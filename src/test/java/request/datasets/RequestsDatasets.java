@@ -26,10 +26,9 @@ public class RequestsDatasets {
         response =  given()
                 .log()
                 .all()
-                .header("Content-Type","multipart/form-data")
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
                 .multiPart("file", new File("datasets.csv"))
-                .multiPart("name", bodyCreateDatasets.getName())
+                .formParam("name", bodyCreateDatasets.getName())
                 .post(Urls.ROOT_EXPERIMENTS.getUrl() + path)
                 .then()
                 .log().all();

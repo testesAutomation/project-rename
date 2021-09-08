@@ -3,11 +3,10 @@
 <suite name="Suite Experiments" verbose="1" >
     <test name="Create, List, Update and Delete">
         <classes>
-            <class name="acceptance.experiments.CreatesExperiments"/>
-            <class name="acceptance.experiments.ListExperiments"/>
-            <class name="acceptance.experiments.GetExperimntById"/>
-            <class name="acceptance.experiments.UpdateExperiment"/>
-            <class name="acceptance.experiments.DeleteExperiment"/>
+            <class name="acceptance.datasets.CreatesDatasets"/>
+            <class name="acceptance.datasets.GetDatasetsById"/>
+            <class name="acceptance.datasets.PatchDatasetsById"/>
+            <class name="acceptance.datasets.DeleteDatasetsById"/>
         </classes>
     </test>
 </suite>
