@@ -1,4 +1,4 @@
-package models;
+package models.experiments;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.javafaker.Faker;
@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ResponseListExperiment {
+public class ResponseCreatesExperiments {
 
     private String id;
     private String name;
@@ -16,4 +16,6 @@ public class ResponseListExperiment {
     private String image;
     private String description;
     private int datasetCount;
+
+
 }

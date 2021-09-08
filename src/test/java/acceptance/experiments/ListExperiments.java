@@ -2,7 +2,7 @@ package acceptance.experiments;
 
 
 import io.restassured.response.ValidatableResponse;
-import models.BodyListExperiments;
+import models.experiments.BodyListExperiments;
 import org.apache.http.HttpStatus;
 import org.hamcrest.CoreMatchers;
 import org.json.simple.parser.ParseException;
@@ -23,7 +23,7 @@ public class ListExperiments {
     String token;
 
     @Test
-    public void validateListExperimentsReturnStatusCode200() throws IOException, ParseException {
+    public void validateListExperimentsReturnStatusCode200() {
         token = RequestToken.captureToken();
         response = RequestsExperiments.listExperiments(token);
         response.statusCode(HttpStatus.SC_OK);

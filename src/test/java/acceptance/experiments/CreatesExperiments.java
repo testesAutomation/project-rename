@@ -1,8 +1,8 @@
 package acceptance.experiments;
 
 import io.restassured.response.ValidatableResponse;
-import models.BodyCreatesExperiments;
-import models.ResponseCreatesExperiments;
+import models.experiments.BodyCreatesExperiments;
+import models.experiments.ResponseCreatesExperiments;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 import request.experiments.RequestToken;
@@ -21,7 +21,7 @@ public class CreatesExperiments {
     public String InvalidToken = "123";
 
     @Test
-    public void validateCreatesExperimentsReturnStatusCode200() throws IOException {
+    public void validateCreatesExperimentsReturnStatusCode200() {
         bodyCreatesExperiments = new BodyCreatesExperiments();
         token = RequestToken.captureToken();
         response = RequestsExperiments.createsExperiments(bodyCreatesExperiments.validBody(),token);

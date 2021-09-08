@@ -1,17 +1,13 @@
 package acceptance.experiments;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.response.ValidatableResponse;
-import models.BodyCreatesExperiments;
-import models.ResponseCreatesExperiments;
+import models.experiments.BodyCreatesExperiments;
+import models.experiments.ResponseCreatesExperiments;
 import org.apache.http.HttpStatus;
 import org.hamcrest.CoreMatchers;
-import org.json.simple.parser.ParseException;
 import org.testng.annotations.Test;
 import request.experiments.RequestToken;
 import request.experiments.RequestsExperiments;
-
-import java.io.IOException;
 
 public class UpdateExperiment {
 

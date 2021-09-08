@@ -4,8 +4,8 @@ import config.Headers;
 import config.Urls;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
-import models.BodyCreatesExperiments;
-import models.ResponseCreatesExperiments;
+import models.experiments.BodyCreatesExperiments;
+import models.experiments.ResponseCreatesExperiments;
 
 import static io.restassured.RestAssured.given;
 

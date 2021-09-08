@@ -1,7 +1,7 @@
 package acceptance.experiments;
 
 import io.restassured.response.ValidatableResponse;
-import models.ResponseCreatesExperiments;
+import models.experiments.ResponseCreatesExperiments;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 import request.experiments.RequestToken;
