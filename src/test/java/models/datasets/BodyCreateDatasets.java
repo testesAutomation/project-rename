@@ -15,9 +15,9 @@ public class BodyCreateDatasets {
     private String name;
     private File file;
 
-
     public BodyCreateDatasets() {
         this.faker = new Faker();
+        this.name  = faker.lorem().characters(9);
 
     }
 }

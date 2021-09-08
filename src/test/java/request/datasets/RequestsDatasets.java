@@ -10,6 +10,7 @@ import models.datasets.ResponseCreateDatasets;
 import models.experiments.BodyCreatesExperiments;
 import models.experiments.ResponseCreatesExperiments;
 
+import java.io.File;
 import java.util.Locale;
 
 import static io.restassured.RestAssured.given;
@@ -27,7 +28,8 @@ public class RequestsDatasets {
                 .all()
                 .header("Content-Type","multipart/form-data")
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
-                .body(bodyCreateDatasets)
+                .multiPart("file", new File("datasets.csv"))
+                .multiPart("name", bodyCreateDatasets.getName())
                 .post(Urls.ROOT_EXPERIMENTS.getUrl() + path)
                 .then()
                 .log().all();
