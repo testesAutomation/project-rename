@@ -19,11 +19,7 @@ public class BodyCreateDatasets {
     public BodyCreateDatasets() {
         this.faker = new Faker();
         this.name  = faker.lorem().characters(9);
-        this.experimentId  = faker.lorem().characters(8) +
-                "-" + faker.lorem().characters(4) +
-                "-"+ faker.lorem().characters(4) +
-                "-"+ faker.lorem().characters(4) +
-                "-"+ faker.lorem().characters(12);
+        this.experimentId = "3578102f-64cf-4826-b804-e8b864f901d5";
 
     }
 }
