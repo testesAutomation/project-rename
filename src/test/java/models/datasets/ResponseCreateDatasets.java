@@ -13,12 +13,12 @@ public class ResponseCreateDatasets {
     public String id;
     public String name;
     public String experimentId;
-    //public Parent parent;
+    public ResponseParentDatasets parent;
     public String creationDate;
     public String lastUpdateDate;
     public String conclusionDate;
     public int size;
-    //public Status status;
+    public ResponseStatusDatasets status;
     public int numRows;
     public int numColumns;
     public String defaultTarget;

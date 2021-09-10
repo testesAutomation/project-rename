@@ -26,7 +26,7 @@ public class RequestsDatasets {
         response =  given()
                 .log()
                 .all()
-                .header("Content-Type","multipart/form-data")
+                .contentType(ContentType.ANY)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
                 .formParam("file", new File("datasets.csv"))
                 .formParam("experimentId",bodyCreateDatasets.getExperimentId())
