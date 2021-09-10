@@ -3,17 +3,17 @@ package request.datasets;
 import com.github.javafaker.Faker;
 import config.Headers;
 import config.Urls;
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import models.datasets.BodyCreateDatasets;
 import models.datasets.ResponseCreateDatasets;
-import models.experiments.BodyCreatesExperiments;
-import models.experiments.ResponseCreatesExperiments;
 
 import java.io.File;
 import java.util.Locale;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.config.EncoderConfig.encoderConfig;
 
 public class RequestsDatasets {
 
@@ -26,9 +26,10 @@ public class RequestsDatasets {
         response =  given()
                 .log()
                 .all()
-                .contentType(ContentType.ANY)
+                .config(RestAssured.config()
+                .encoderConfig(encoderConfig().encodeContentTypeAs("multipart/form-data", ContentType.TEXT)))
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
-                .formParam("file", new File("datasets.csv"))
+                .multiPart("file", new File("datasets.csv")).contentType(ContentType.BINARY)
                 .formParam("experimentId",bodyCreateDatasets.getExperimentId())
                 .formParam("name", bodyCreateDatasets.getName())
                 .post(Urls.ROOT_EXPERIMENTS.getUrl() + path)
