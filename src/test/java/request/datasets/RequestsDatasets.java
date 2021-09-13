@@ -6,8 +6,7 @@ import config.Urls;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import models.datasets.ResponseCreateDatasets;
-import models.experiments.BodyCreatesExperiments;
-import request.experiments.RequestsExperiments;
+import models.experiments.ResponseCreatesExperiments;
 
 import java.io.File;
 import java.util.Locale;
@@ -20,19 +19,15 @@ public class RequestsDatasets {
     static ValidatableResponse response;
     public static ResponseCreateDatasets responseCreateDatasets;
 
-    public static ValidatableResponse createsDatasetsWithExperiment(String token) {
-
-        //Create a new experiment
-        BodyCreatesExperiments bodyCreatesExperiments = new BodyCreatesExperiments();
-        RequestsExperiments.createsExperiments(bodyCreatesExperiments, token);
+    public static ValidatableResponse createsDatasetsWithExperiment(ResponseCreatesExperiments responseCreatesExperiments, String token) {
 
         response =  given()
                 .log()
                 .all()
                 .contentType("multipart/form-data")
                 .multiPart("name", "DataSetAutomation")
-                .multiPart("experimentId", RequestsExperiments.responseCreatesExperiments.getId())
-                .multiPart("file", new File("src/test/resouces/dataset_example.csv"))
+                .multiPart("experimentId", responseCreatesExperiments.getId())
+                .multiPart("file", new File("src/test/resources/dataset_example.csv"))
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
                 .post(Urls.ROOT_EXPERIMENTS.getUrl() + path)
                 .then()
@@ -51,7 +46,7 @@ public class RequestsDatasets {
                 .all()
                 .contentType("multipart/form-data")
                 .multiPart("name", "DataSetAutomation")
-                .multiPart("file", new File("src/test/resouces/dataset_example.csv"))
+                .multiPart("file", new File("src/test/resources/dataset_example.csv"))
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
                 .post(Urls.ROOT_EXPERIMENTS.getUrl() + path)
                 .then()
