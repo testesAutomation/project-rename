@@ -9,6 +9,8 @@ import io.restassured.response.ValidatableResponse;
 import models.datasets.BodyCreateDatasets;
 import models.datasets.ResponseCreateDatasets;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,17 +24,14 @@ public class RequestsDatasets {
     static ValidatableResponse response;
     public static ResponseCreateDatasets responseCreateDatasets, updateResponseCreateDatasets;
 
-    public static ValidatableResponse createsDatasets(BodyCreateDatasets bodyCreateDatasets, String token) throws IOException {
-        byte[] data = Files.readAllBytes(Path.of("src/test/resources/datasets.csv"));
+    public static ValidatableResponse createsDatasets(BodyCreateDatasets bodyCreateDatasets, String token) {
 
         response =  given()
                 .log()
                 .all()
                 .contentType("multipart/form-data")
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
-                .multiPart("file", "myFile", data)
-                .formParam("experimentId",bodyCreateDatasets.getExperimentId())
-                .formParam("name", bodyCreateDatasets.getName())
+                .body(bodyCreateDatasets)
                 .post(Urls.ROOT_EXPERIMENTS.getUrl() + path)
                 .then()
                 .log().all();
