@@ -7,8 +7,6 @@ import org.testng.annotations.Test;
 import request.datasets.RequestsDatasets;
 import request.experiments.RequestToken;
 
-import static org.hamcrest.CoreMatchers.notNullValue;
-
 public class DeleteDatasetsById {
 
     public ValidatableResponse response;
@@ -31,12 +29,12 @@ public class DeleteDatasetsById {
     }
 
     @Test
-    public void validateDeleteDatasetsByIdReturnStatusCode404() {
+    public void validateDeleteDatasetsByIdReturnStatusCode400() {
         token = RequestToken.captureToken();
         responseCreateDatasets = RequestsDatasets.responseCreateDatasets;
         responseCreateDatasets.setId("ID-NOT-FOUND-NUMBER-333");
         response = RequestsDatasets.deleteDatasetsById(responseCreateDatasets, token);
-        response.statusCode(HttpStatus.SC_NOT_FOUND);
+        response.statusCode(HttpStatus.SC_BAD_REQUEST);
     }
 
 }

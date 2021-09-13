@@ -5,6 +5,7 @@
         <classes>
             <class name="acceptance.datasets.CreatesDatasets"/>
             <class name="acceptance.datasets.GetDatasetsById"/>
+            <class name="acceptance.datasets.ListDatasets"/>
             <class name="acceptance.datasets.PatchDatasetsById"/>
             <class name="acceptance.datasets.DeleteDatasetsById"/>
         </classes>

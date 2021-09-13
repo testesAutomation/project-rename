@@ -23,7 +23,6 @@ public class GetDatasetsById {
         response.statusCode(HttpStatus.SC_OK);
     }
 
-
     @Test
     public void validateGetDatasetsByIdReturnStatusCode401() {
         token = InvalidToken;
@@ -33,12 +32,12 @@ public class GetDatasetsById {
     }
 
     @Test
-    public void validateGetDatasetsByIdReturnStatusCode404() {
+    public void validateGetDatasetsByIdReturnStatusCode400() {
         token = RequestToken.captureToken();
         responseCreateDatasets = RequestsDatasets.responseCreateDatasets;
         responseCreateDatasets.setId("ID-NOT-FOUND-NUMBER-333");
         response = RequestsDatasets.getDatasetsById(responseCreateDatasets, token);
-        response.statusCode(HttpStatus.SC_NOT_FOUND);
+        response.statusCode(HttpStatus.SC_BAD_REQUEST);
         response.body(notNullValue());
     }
 
