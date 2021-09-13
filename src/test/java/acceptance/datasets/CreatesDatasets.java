@@ -22,7 +22,7 @@ public class CreatesDatasets {
     public String InvalidToken = "123";
 
     @Test
-    public void validateCreatesDatasetsReturnStatusCode200()  {
+    public void validateCreatesDatasetsReturnStatusCode200() throws IOException {
         bodyCreateDatasets = new BodyCreateDatasets();
         token = RequestToken.captureToken();
         response = RequestsDatasets.createsDatasets(bodyCreateDatasets, token);

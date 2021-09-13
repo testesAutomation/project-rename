@@ -4,12 +4,16 @@ import com.github.javafaker.Faker;
 import config.Headers;
 import config.Urls;
 import io.restassured.RestAssured;
+import io.restassured.builder.MultiPartSpecBuilder;
 import io.restassured.http.ContentType;
+import io.restassured.internal.util.IOUtils;
+import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.ValidatableResponse;
 import models.datasets.BodyCreateDatasets;
 import models.datasets.ResponseCreateDatasets;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Locale;
 
 import static io.restassured.RestAssured.given;
@@ -21,14 +25,16 @@ public class RequestsDatasets {
     static ValidatableResponse response;
     public static ResponseCreateDatasets responseCreateDatasets, updateResponseCreateDatasets;
 
-    public static ValidatableResponse createsDatasets(BodyCreateDatasets bodyCreateDatasets, String token) {
+    public static ValidatableResponse createsDatasets(BodyCreateDatasets bodyCreateDatasets, String token) throws IOException {
+
+        final byte[] bytes = IOUtils.toByteArray(RequestsDatasets.class.getResourceAsStream("datasets.csv"));
 
         response =  given()
                 .log()
                 .all()
                 .contentType("multipart/form-data")
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
-                .formParam("file", new File("datasets.csv"))
+                .multiPart("file", "myFile", bytes)
                 .formParam("experimentId",bodyCreateDatasets.getExperimentId())
                 .formParam("name", bodyCreateDatasets.getName())
                 .post(Urls.ROOT_EXPERIMENTS.getUrl() + path)
