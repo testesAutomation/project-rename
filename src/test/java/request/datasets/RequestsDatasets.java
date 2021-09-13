@@ -15,6 +15,8 @@ import models.datasets.ResponseCreateDatasets;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Locale;
 
 import static io.restassured.RestAssured.given;
@@ -26,19 +28,18 @@ public class RequestsDatasets {
     static ValidatableResponse response;
     public static ResponseCreateDatasets responseCreateDatasets, updateResponseCreateDatasets;
 
-    public static ValidatableResponse createsDatasets(BodyCreateDatasets bodyCreateDatasets, String token) {
+    public static ValidatableResponse createsDatasets(BodyCreateDatasets bodyCreateDatasets, String token) throws IOException {
 
         CsvCreateDatasetsBody csvCreateDatasetsBody = new CsvCreateDatasetsBody();
+
+        byte[] data = Files.readAllBytes(Path.of("datasets.csv"));
 
         response =  given()
                 .log()
                 .all()
                 .contentType("multipart/form-data")
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
-                .multiPart(new MultiPartSpecBuilder(csvCreateDatasetsBody, ObjectMapperType.JAXB)
-                        .fileName("datasets.csv")
-                        .controlName("text")
-                        .mimeType("application/vnd.ms-excel").build())
+                .multiPart("file", "myFile", data)
                 .formParam("experimentId",bodyCreateDatasets.getExperimentId())
                 .formParam("name", bodyCreateDatasets.getName())
                 .post(Urls.ROOT_EXPERIMENTS.getUrl() + path)

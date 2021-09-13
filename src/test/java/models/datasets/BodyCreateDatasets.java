@@ -14,7 +14,6 @@ public class BodyCreateDatasets {
     private Faker faker;
     private String name;
     private String experimentId;
-    private File file;
 
     public BodyCreateDatasets() {
         this.faker = new Faker();
