@@ -1,26 +1,20 @@
 package request.datasets;
 
 import com.github.javafaker.Faker;
+import com.google.common.net.MediaType;
 import config.Headers;
 import config.Urls;
-import io.restassured.RestAssured;
-import io.restassured.builder.MultiPartSpecBuilder;
 import io.restassured.http.ContentType;
-import io.restassured.internal.util.IOUtils;
-import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.ValidatableResponse;
 import models.datasets.BodyCreateDatasets;
-import models.datasets.CsvCreateDatasetsBody;
 import models.datasets.ResponseCreateDatasets;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Locale;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.config.EncoderConfig.encoderConfig;
 
 public class RequestsDatasets {
 
@@ -29,10 +23,7 @@ public class RequestsDatasets {
     public static ResponseCreateDatasets responseCreateDatasets, updateResponseCreateDatasets;
 
     public static ValidatableResponse createsDatasets(BodyCreateDatasets bodyCreateDatasets, String token) throws IOException {
-
-        CsvCreateDatasetsBody csvCreateDatasetsBody = new CsvCreateDatasetsBody();
-
-        byte[] data = Files.readAllBytes(Path.of("datasets.csv"));
+        byte[] data = Files.readAllBytes(Path.of("src/test/resources/datasets.csv"));
 
         response =  given()
                 .log()
