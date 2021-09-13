@@ -10,6 +10,7 @@ import io.restassured.internal.util.IOUtils;
 import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.ValidatableResponse;
 import models.datasets.BodyCreateDatasets;
+import models.datasets.CsvCreateDatasetsBody;
 import models.datasets.ResponseCreateDatasets;
 
 import java.io.File;
@@ -25,16 +26,19 @@ public class RequestsDatasets {
     static ValidatableResponse response;
     public static ResponseCreateDatasets responseCreateDatasets, updateResponseCreateDatasets;
 
-    public static ValidatableResponse createsDatasets(BodyCreateDatasets bodyCreateDatasets, String token) throws IOException {
+    public static ValidatableResponse createsDatasets(BodyCreateDatasets bodyCreateDatasets, String token) {
 
-        final byte[] bytes = IOUtils.toByteArray(RequestsDatasets.class.getResourceAsStream("datasets.csv"));
+        CsvCreateDatasetsBody csvCreateDatasetsBody = new CsvCreateDatasetsBody();
 
         response =  given()
                 .log()
                 .all()
                 .contentType("multipart/form-data")
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
-                .multiPart("file", "myFile", bytes)
+                .multiPart(new MultiPartSpecBuilder(csvCreateDatasetsBody, ObjectMapperType.JAXB)
+                        .fileName("datasets.csv")
+                        .controlName("text")
+                        .mimeType("application/vnd.ms-excel").build())
                 .formParam("experimentId",bodyCreateDatasets.getExperimentId())
                 .formParam("name", bodyCreateDatasets.getName())
                 .post(Urls.ROOT_EXPERIMENTS.getUrl() + path)
