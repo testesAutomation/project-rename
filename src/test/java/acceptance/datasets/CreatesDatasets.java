@@ -27,7 +27,7 @@ public class CreatesDatasets {
     @BeforeTest
     public void filePathSet(){
         file = new File("src/test/resources/dataset_example.csv");
-        fileRandomFor404 = new File("src/test/resources/randomFile.txt");
+        fileRandomFor404 = new File("src/test/resources/dataset_vazio.csv");
     }
 
     @Test
@@ -62,6 +62,7 @@ public class CreatesDatasets {
     public void validateCreatesDatasetsReturnStatusCode400() {
             token = RequestToken.captureToken();
             ResponseCreatesExperiments responseCreatesExperimentsEmpty = new ResponseCreatesExperiments();
+            responseCreatesExperimentsEmpty.setId("");
             response = RequestsDatasets.createsDatasetsWithExperiment(responseCreatesExperimentsEmpty, token, fileRandomFor404);
             response.statusCode(HttpStatus.SC_BAD_REQUEST);
             response.body(notNullValue());
