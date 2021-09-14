@@ -32,12 +32,12 @@ public class PatchDatasetsById {
     }
 
     @Test
-    public void validatePatchDatasetsByIdReturnStatusCode400() {
+    public void validatePatchDatasetsByIdReturnStatusCode404() {
         token = RequestToken.captureToken();
-        responseCreateDatasets = RequestsDatasets.responseCreateDatasets;
-        responseCreateDatasets.setId("ID-NOT-FOUND-NUMBER-333");
-        response = RequestsDatasets.patchDatasetsById(responseCreateDatasets, token);
-        response.statusCode(HttpStatus.SC_BAD_REQUEST);
+        ResponseCreateDatasets responseCreateDatasetsNotFound = new ResponseCreateDatasets();
+        responseCreateDatasetsNotFound.setId("ID-NOT-FOUND");
+        response = RequestsDatasets.patchDatasetsById(responseCreateDatasetsNotFound, token);
+        response.statusCode(HttpStatus.SC_NOT_FOUND);
         response.body(notNullValue());
     }
 

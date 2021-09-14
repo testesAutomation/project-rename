@@ -34,9 +34,9 @@ public class GetDatasetsById {
     @Test
     public void validateGetDatasetsByIdReturnStatusCode400() {
         token = RequestToken.captureToken();
-        responseCreateDatasets = RequestsDatasets.responseCreateDatasets;
-        responseCreateDatasets.setId("ID-NOT-FOUND-NUMBER-333");
-        response = RequestsDatasets.getDatasetsById(responseCreateDatasets, token);
+        ResponseCreateDatasets responseCreateDatasetsNotFound = new ResponseCreateDatasets();
+        responseCreateDatasetsNotFound.setId("ID-NOT-FOUND");
+        response = RequestsDatasets.getDatasetsById(responseCreateDatasetsNotFound, token);
         response.statusCode(HttpStatus.SC_BAD_REQUEST);
         response.body(notNullValue());
     }

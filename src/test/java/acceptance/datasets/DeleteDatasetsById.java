@@ -29,11 +29,11 @@ public class DeleteDatasetsById {
     }
 
     @Test
-    public void validateDeleteDatasetsByIdReturnStatusCode400() {
+    public void validateDeleteDatasetsByIdReturnStatusCode404() {
         token = RequestToken.captureToken();
-        responseCreateDatasets = RequestsDatasets.responseCreateDatasets;
-        responseCreateDatasets.setId("ID-NOT-FOUND-NUMBER-333");
-        response = RequestsDatasets.deleteDatasetsById(responseCreateDatasets, token);
+        ResponseCreateDatasets responseCreateDatasetsNotFound = new ResponseCreateDatasets();
+        responseCreateDatasetsNotFound.setId("ID-NOT-FOUND");
+        response = RequestsDatasets.deleteDatasetsById(responseCreateDatasetsNotFound, token);
         response.statusCode(HttpStatus.SC_BAD_REQUEST);
     }
 

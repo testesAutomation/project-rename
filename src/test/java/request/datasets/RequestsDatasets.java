@@ -19,7 +19,7 @@ public class RequestsDatasets {
     static ValidatableResponse response;
     public static ResponseCreateDatasets responseCreateDatasets;
 
-    public static ValidatableResponse createsDatasetsWithExperiment(ResponseCreatesExperiments responseCreatesExperiments, String token) {
+    public static ValidatableResponse createsDatasetsWithExperiment(ResponseCreatesExperiments responseCreatesExperiments, String token, File file) {
 
         response =  given()
                 .log()
@@ -27,7 +27,7 @@ public class RequestsDatasets {
                 .contentType("multipart/form-data")
                 .multiPart("name", "DataSetAutomation")
                 .multiPart("experimentId", responseCreatesExperiments.getId())
-                .multiPart("file", new File("src/test/resources/dataset_example.csv"))
+                .multiPart("file", file)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
                 .post(Urls.ROOT_EXPERIMENTS.getUrl() + path)
                 .then()
@@ -39,14 +39,14 @@ public class RequestsDatasets {
         return response;
     }
 
-    public static ValidatableResponse createsDatasetWithoutAnyId(String token) {
+    public static ValidatableResponse createsDatasetWithoutAnyId(String token, File file) {
 
         response =  given()
                 .log()
                 .all()
                 .contentType("multipart/form-data")
                 .multiPart("name", "DataSetAutomation")
-                .multiPart("file", new File("src/test/resources/dataset_example.csv"))
+                .multiPart("file", file)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
                 .post(Urls.ROOT_EXPERIMENTS.getUrl() + path)
                 .then()
@@ -83,16 +83,15 @@ public class RequestsDatasets {
 
     public static ValidatableResponse deleteDatasetsById(ResponseCreateDatasets responseCreateDatasets, String token) {
 
-        response =   given()
+        return given()
                 .log()
                 .all()
                 .contentType(ContentType.JSON)
-                .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
-                .param("datasetId", responseCreateDatasets.getId())
-                .delete(Urls.ROOT_EXPERIMENTS.getUrl() + path)
+                .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader() + token)
+                .delete(Urls.ROOT_EXPERIMENTS.getUrl() + path + "/" + responseCreateDatasets.getId())
                 .then()
                 .log().all();
-        return response;
+
     }
 
     public static ValidatableResponse patchDatasetsById(ResponseCreateDatasets responseCreateDatasets, String token) {
@@ -109,9 +108,8 @@ public class RequestsDatasets {
                 .all()
                 .contentType(ContentType.JSON)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
-                .param("datasetId", responseCreateDatasets.getId())
                 .body(bodyPatch)
-                .patch(Urls.ROOT_EXPERIMENTS.getUrl() + path)
+                .patch(Urls.ROOT_EXPERIMENTS.getUrl() + path +  "/" + responseCreateDatasets.getId())
                 .then()
                 .log().all();
         return response;
