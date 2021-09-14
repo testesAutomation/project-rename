@@ -12,7 +12,6 @@ import request.experiments.RequestToken;
 import request.experiments.RequestsExperiments;
 
 import java.io.File;
-import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
 
@@ -23,11 +22,12 @@ public class CreatesDatasets {
     public BodyCreatesExperiments bodyCreatesExperiments;
     String token;
     public String InvalidToken = "123";
-    public File file;
+    public File file, fileRandomFor404;
 
     @BeforeTest
     public void filePathSet(){
         file = new File("src/test/resources/dataset_example.csv");
+        fileRandomFor404 = new File("src/test/resources/randomFile.txt");
     }
 
     @Test
@@ -59,12 +59,10 @@ public class CreatesDatasets {
     }
 
     @Test
-    public void validateCreatesDatasetsReturnStatusCode400() throws IOException {
-        File fileError = new File("error400.txt");
-        if(fileError.createNewFile())
+    public void validateCreatesDatasetsReturnStatusCode400() {
             token = RequestToken.captureToken();
             ResponseCreatesExperiments responseCreatesExperimentsEmpty = new ResponseCreatesExperiments();
-            response = RequestsDatasets.createsDatasetsWithExperiment(responseCreatesExperimentsEmpty, token, fileError);
+            response = RequestsDatasets.createsDatasetsWithExperiment(responseCreatesExperimentsEmpty, token, fileRandomFor404);
             response.statusCode(HttpStatus.SC_BAD_REQUEST);
             response.body(notNullValue());
     }
