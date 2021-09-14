@@ -27,7 +27,7 @@ public class CreatesDatasets {
     @BeforeTest
     public void filePathSet(){
         file = new File("src/test/resources/dataset_example.csv");
-        fileRandomFor404 = new File("src/test/resources/dataset_vazio.csv");
+        fileRandomFor404 = new File("src/test/resources/datasetVazio.csv");
     }
 
     @Test
