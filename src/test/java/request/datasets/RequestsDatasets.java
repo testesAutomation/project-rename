@@ -1,5 +1,6 @@
 package request.datasets;
 
+import com.github.javafaker.Faker;
 import config.Headers;
 import config.Urls;
 import io.restassured.http.ContentType;
@@ -8,6 +9,7 @@ import models.datasets.ResponseCreateDatasets;
 import models.experiments.ResponseCreatesExperiments;
 
 import java.io.File;
+import java.util.Locale;
 
 import static io.restassured.RestAssured.given;
 
@@ -92,7 +94,14 @@ public class RequestsDatasets {
 
     }
 
-    public static ValidatableResponse patchDatasetsById(ResponseCreateDatasets responseCreateDatasets, String token, String bodyPatch) {
+    public static ValidatableResponse patchDatasetsById(ResponseCreateDatasets responseCreateDatasets, String token) {
+        Faker faker = new Faker(new Locale("pt-BR"));
+
+        String bodyPatch = "{\n" +
+                "  \"name\": \""+ RequestsDatasets.responseCreateDatasets.getName() + "\",\n" +
+                "  \"name\": \""+ faker.lorem().characters(7) +"\"\n" +
+                "}";
+
 
         response =   given()
                 .log()
