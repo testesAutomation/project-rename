@@ -1,7 +1,5 @@
 package models.experiments;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.github.javafaker.Faker;
 import lombok.Getter;
 import lombok.Setter;
 

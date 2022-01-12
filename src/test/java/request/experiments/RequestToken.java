@@ -1,10 +1,10 @@
 package request.experiments;
 
-import config.Urls;
-import io.restassured.http.ContentType;
-import models.experiments.BodyToken;
+        import config.Urls;
+        import io.restassured.http.ContentType;
+        import models.experiments.BodyToken;
 
-import static io.restassured.RestAssured.given;
+        import static io.restassured.RestAssured.given;
 
 public class RequestToken {
 

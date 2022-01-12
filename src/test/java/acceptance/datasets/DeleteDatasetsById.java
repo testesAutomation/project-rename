@@ -9,10 +9,9 @@ import request.experiments.RequestToken;
 
 public class DeleteDatasetsById {
 
-    public ValidatableResponse response;
-    public ResponseCreateDatasets responseCreateDatasets;
-    String token;
-    public String InvalidToken = "123";
+    private ValidatableResponse response;
+    private String token;
+    private String InvalidToken = "123";
 
     @Test
     public void validateDeleteDatasetsByIdReturnStatusCode200() {

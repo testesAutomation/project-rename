@@ -11,9 +11,9 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 
 public class GetDatasetsTimeFrames {
 
-    public ValidatableResponse response;
-    String token;
-    public String InvalidToken = "123";
+    private ValidatableResponse response;
+    private String token;
+    private String InvalidToken = "123";
 
     @Test
     public void validateGetDatasetsTimeframesReturnStatusCode200() {

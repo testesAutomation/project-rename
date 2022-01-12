@@ -11,10 +11,9 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 
 public class GetDatasetsById {
 
-    public ValidatableResponse response;
-    public ResponseCreateDatasets responseCreateDatasets;
-    String token;
-    public String InvalidToken = "123";
+    private ValidatableResponse response;
+    private String token;
+    private String InvalidToken = "123";
 
     @Test
     public void validateGetDatasetsByIdReturnStatusCode200() {

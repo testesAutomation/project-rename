@@ -17,12 +17,11 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 
 public class CreatesDatasets {
 
-    public ValidatableResponse response;
-    public BodyCreateDatasets bodyCreateDatasets;
-    public BodyCreatesExperiments bodyCreatesExperiments;
-    String token;
-    public String InvalidToken = "123";
-    public File file, fileRandomFor404;
+    private ValidatableResponse response;
+    private BodyCreatesExperiments bodyCreatesExperiments;
+    private String token;
+    private String InvalidToken = "123";
+    private File file, fileRandomFor404;
 
     @BeforeTest
     public void filePathSet(){
