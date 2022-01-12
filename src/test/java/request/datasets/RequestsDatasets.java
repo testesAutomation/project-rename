@@ -11,11 +11,11 @@ import models.experiments.ResponseCreatesExperiments;
 import java.io.File;
 import java.util.Locale;
 
+import static config.Paths.*;
 import static io.restassured.RestAssured.given;
 
 public class RequestsDatasets {
 
-    private static String path = "/datasets";
     static ValidatableResponse response;
     public static ResponseCreateDatasets responseCreateDatasets;
 
@@ -29,7 +29,7 @@ public class RequestsDatasets {
                 .multiPart("experimentId", responseCreatesExperiments.getId())
                 .multiPart("file", file)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
-                .post(Urls.ROOT_EXPERIMENTS.getUrl() + path)
+                .post(Urls.ROOT_EXPERIMENTS.getUrl() + PATH_DATASETS)
                 .then()
                 .log().all();
 
@@ -48,7 +48,7 @@ public class RequestsDatasets {
                 .multiPart("name", "DataSetAutomation")
                 .multiPart("file", file)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
-                .post(Urls.ROOT_EXPERIMENTS.getUrl() + path)
+                .post(Urls.ROOT_EXPERIMENTS.getUrl() + PATH_DATASETS)
                 .then()
                 .log().all();
         return response;
@@ -61,7 +61,8 @@ public class RequestsDatasets {
                 .all()
                 .contentType(ContentType.JSON)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
-                .get(Urls.ROOT_EXPERIMENTS.getUrl() + path + "/" + responseCreateDatasets.getId())
+                .pathParam("id_datasets",responseCreateDatasets.getId())
+                .get(Urls.ROOT_EXPERIMENTS.getUrl() + PATH_DATASETS_BY_ID)
                 .then()
                 .log().all();
         return response;
@@ -75,7 +76,7 @@ public class RequestsDatasets {
                 .all()
                 .contentType(ContentType.JSON)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
-                .get(Urls.ROOT_EXPERIMENTS.getUrl() + path)
+                .get(Urls.ROOT_EXPERIMENTS.getUrl() + PATH_DATASETS)
                 .then()
                 .log().all();
         return response;
@@ -88,7 +89,8 @@ public class RequestsDatasets {
                 .all()
                 .contentType(ContentType.JSON)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader() + token)
-                .delete(Urls.ROOT_EXPERIMENTS.getUrl() + path + "/" + responseCreateDatasets.getId())
+                .pathParam("id_datasets",responseCreateDatasets.getId())
+                .delete(Urls.ROOT_EXPERIMENTS.getUrl() + PATH_DATASETS_BY_ID)
                 .then()
                 .log().all();
 
@@ -108,12 +110,43 @@ public class RequestsDatasets {
                 .all()
                 .contentType(ContentType.JSON)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
+                .pathParam("id_datasets",responseCreateDatasets.getId())
                 .body(bodyPatch)
-                .patch(Urls.ROOT_EXPERIMENTS.getUrl() + path +  "/" + responseCreateDatasets.getId())
+                .patch(Urls.ROOT_EXPERIMENTS.getUrl() + PATH_DATASETS_BY_ID)
                 .then()
                 .log().all();
         return response;
     }
+
+    public static ValidatableResponse getDatasetsTimeframes(ResponseCreateDatasets responseCreateDatasets, String token) {
+
+        response =  given()
+                .log()
+                .all()
+                .contentType(ContentType.JSON)
+                .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
+                .pathParam("id_datasets",responseCreateDatasets.getId())
+                .get(Urls.ROOT_EXPERIMENTS.getUrl() + PATH_DATASETS_TIMEFRAMES)
+                .then()
+                .log().all();
+        return response;
+    }
+
+
+    public static ValidatableResponse getDatasetsColumns(ResponseCreateDatasets responseCreateDatasets, String token) {
+
+        response =  given()
+                .log()
+                .all()
+                .contentType(ContentType.JSON)
+                .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
+                .pathParam("id_datasets", responseCreateDatasets.getId())
+                .get(Urls.ROOT_EXPERIMENTS.getUrl() + PATH_DATASETS_COLUMNS)
+                .then()
+                .log().all();
+        return response;
+    }
+
 
 
 }

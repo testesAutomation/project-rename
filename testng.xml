@@ -4,6 +4,8 @@
     <test name="Create, List, Update and Delete">
         <classes>
             <class name="acceptance.datasets.CreatesDatasets"/>
+            <class name="acceptance.datasets.GetDatasetsTimeFrames"/>
+            <class name="acceptance.datasets.GetDatasetsColumns"/>
             <class name="acceptance.datasets.GetDatasetsById"/>
             <class name="acceptance.datasets.ListDatasets"/>
             <class name="acceptance.datasets.PatchDatasetsById"/>
