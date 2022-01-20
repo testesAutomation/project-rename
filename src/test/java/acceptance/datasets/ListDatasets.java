@@ -1,7 +1,6 @@
 package acceptance.datasets;
 
 import io.restassured.response.ValidatableResponse;
-import models.datasets.ResponseCreateDatasets;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 import request.datasets.RequestsDatasets;
@@ -12,8 +11,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 public class ListDatasets {
 
     private ValidatableResponse response;
-    private String token;
-    private String InvalidToken = "123";
+    private String token, invalidToken;
 
     @Test
     public void validateGetListDatasetsReturnStatusCode200() {
@@ -25,7 +23,8 @@ public class ListDatasets {
 
     @Test
     public void validateGetListDatasetsReturnStatusCode401() {
-        response = RequestsDatasets.getListDatasets(InvalidToken);
+        invalidToken = RequestToken.captureInvalidToken();
+        response = RequestsDatasets.getListDatasets(invalidToken);
         response.statusCode(HttpStatus.SC_UNAUTHORIZED);
         response.body(notNullValue());
     }

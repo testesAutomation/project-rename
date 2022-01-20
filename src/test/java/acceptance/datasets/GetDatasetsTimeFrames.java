@@ -12,8 +12,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 public class GetDatasetsTimeFrames {
 
     private ValidatableResponse response;
-    private String token;
-    private String InvalidToken = "123";
+    private String token, invalidToken;
 
     @Test
     public void validateGetDatasetsTimeframesReturnStatusCode200() {
@@ -24,8 +23,8 @@ public class GetDatasetsTimeFrames {
 
     @Test
     public void validateGetDatasetsTimeframesReturnStatusCode401() {
-        token = InvalidToken;
-        response = RequestsDatasets.getDatasetsTimeframes(RequestsDatasets.responseCreateDatasets, token);
+        invalidToken = RequestToken.captureInvalidToken();
+        response = RequestsDatasets.getDatasetsTimeframes(RequestsDatasets.responseCreateDatasets, invalidToken);
         response.statusCode(HttpStatus.SC_UNAUTHORIZED);
         response.body(notNullValue());
     }

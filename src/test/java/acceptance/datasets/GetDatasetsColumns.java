@@ -12,8 +12,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 public class GetDatasetsColumns {
 
     private ValidatableResponse response;
-    private String token;
-    private String InvalidToken = "123";
+    private String token, invalidToken;
 
     @Test
     public void validateGetDatasetsColumnsReturnStatusCode200() {
@@ -24,8 +23,8 @@ public class GetDatasetsColumns {
 
     @Test
     public void validateGetDatasetsColumnsReturnStatusCode401() {
-        token = InvalidToken;
-        response = RequestsDatasets.getDatasetsColumns(RequestsDatasets.responseCreateDatasets, token);
+        invalidToken = RequestToken.captureInvalidToken();
+        response = RequestsDatasets.getDatasetsColumns(RequestsDatasets.responseCreateDatasets, invalidToken);
         response.statusCode(HttpStatus.SC_UNAUTHORIZED);
         response.body(notNullValue());
     }

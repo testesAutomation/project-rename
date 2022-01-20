@@ -1,14 +1,18 @@
 package request.experiments;
 
-        import config.Urls;
-        import io.restassured.http.ContentType;
-        import models.experiments.BodyToken;
-
-        import static io.restassured.RestAssured.given;
+import com.github.javafaker.Faker;
+import config.Urls;
+import io.restassured.http.ContentType;
+import models.experiments.BodyToken;
+import java.util.Locale;
+import static io.restassured.RestAssured.given;
 
 public class RequestToken {
 
     private static String token;
+    private static String tokenInvalid;
+
+    private static Faker faker;
 
     public static String captureToken() {
         BodyToken bodyToken = new BodyToken();
@@ -27,5 +31,11 @@ public class RequestToken {
                 .extract().path("access_token");
         return token;
 
+    }
+
+    public static String captureInvalidToken() {
+        faker = new Faker(new Locale("pt-BR"));
+        tokenInvalid = faker.lorem().characters(6);
+        return tokenInvalid;
     }
 }

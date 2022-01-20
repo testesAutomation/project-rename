@@ -19,7 +19,7 @@ public class RequestsDatasets {
     static ValidatableResponse response;
     public static ResponseCreateDatasets responseCreateDatasets;
 
-    public static ValidatableResponse createsDatasetsWithExperiment(ResponseCreatesExperiments responseCreatesExperiments, String token, File file) {
+    public static ValidatableResponse createDatasets(ResponseCreatesExperiments responseCreatesExperiments, String token, File file) {
 
         response =  given()
                 .log()
@@ -36,21 +36,6 @@ public class RequestsDatasets {
         if(response.extract().statusCode() == 200) {
             responseCreateDatasets = response.extract().as(ResponseCreateDatasets.class);
         }
-        return response;
-    }
-
-    public static ValidatableResponse createsDatasetWithoutAnyId(String token, File file) {
-
-        response =  given()
-                .log()
-                .all()
-                .contentType("multipart/form-data")
-                .multiPart("name", "DataSetAutomation")
-                .multiPart("file", file)
-                .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
-                .post(Urls.ROOT_EXPERIMENTS.getUrl() + PATH_DATASETS)
-                .then()
-                .log().all();
         return response;
     }
 

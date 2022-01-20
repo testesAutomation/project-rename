@@ -19,8 +19,7 @@ public class CreatesDatasets {
 
     private ValidatableResponse response;
     private BodyCreatesExperiments bodyCreatesExperiments;
-    private String token;
-    private String InvalidToken = "123";
+    private String token, invalidToken;
     private File file, fileRandomFor404;
 
     @BeforeTest
@@ -30,19 +29,11 @@ public class CreatesDatasets {
     }
 
     @Test
-    public void validateCreatesDatasetsWithExperimentReturnStatusCode200()  {
+    public void validateCreatesDatasetsReturnStatusCode200()  {
         token = RequestToken.captureToken();
         bodyCreatesExperiments = new BodyCreatesExperiments();
         response = RequestsExperiments.createsExperiments(bodyCreatesExperiments.validBody(),token);
-        response = RequestsDatasets.createsDatasetsWithExperiment(RequestsExperiments.responseCreatesExperiments, token, file);
-        response.statusCode(HttpStatus.SC_OK);
-        response.body(notNullValue());
-    }
-
-    @Test
-    public void validateCreatesDatasetsWithoutAnyIdReturnStatusCode200() {
-        token = RequestToken.captureToken();
-        response = RequestsDatasets.createsDatasetWithoutAnyId(token, file);
+        response = RequestsDatasets.createDatasets(RequestsExperiments.responseCreatesExperiments, token, file);
         response.statusCode(HttpStatus.SC_OK);
         response.body(notNullValue());
     }
@@ -50,21 +41,22 @@ public class CreatesDatasets {
     @Test
     public void validateCreatesDatasetsReturnStatusCode401() {
         token = RequestToken.captureToken();
+        invalidToken = RequestToken.captureInvalidToken();
         bodyCreatesExperiments = new BodyCreatesExperiments();
         response = RequestsExperiments.createsExperiments(bodyCreatesExperiments.validBody(),token);
-        response = RequestsDatasets.createsDatasetsWithExperiment(RequestsExperiments.responseCreatesExperiments, InvalidToken, file);
+        response = RequestsDatasets.createDatasets(RequestsExperiments.responseCreatesExperiments, invalidToken, file);
         response.statusCode(HttpStatus.SC_UNAUTHORIZED);
         response.body(notNullValue());
     }
 
     @Test
     public void validateCreatesDatasetsReturnStatusCode400() {
-            token = RequestToken.captureToken();
-            ResponseCreatesExperiments responseCreatesExperimentsEmpty = new ResponseCreatesExperiments();
-            responseCreatesExperimentsEmpty.setId("");
-            response = RequestsDatasets.createsDatasetsWithExperiment(responseCreatesExperimentsEmpty, token, fileRandomFor404);
-            response.statusCode(HttpStatus.SC_BAD_REQUEST);
-            response.body(notNullValue());
+        token = RequestToken.captureToken();
+        ResponseCreatesExperiments responseCreatesExperimentsEmpty = new ResponseCreatesExperiments();
+        responseCreatesExperimentsEmpty.setId("");
+        response = RequestsDatasets.createDatasets(responseCreatesExperimentsEmpty, token, fileRandomFor404);
+        response.statusCode(HttpStatus.SC_BAD_REQUEST);
+        response.body(notNullValue());
     }
 
 

@@ -10,8 +10,7 @@ import request.experiments.RequestToken;
 public class DeleteDatasetsById {
 
     private ValidatableResponse response;
-    private String token;
-    private String InvalidToken = "123";
+    private String token, invalidToken;
 
     @Test
     public void validateDeleteDatasetsByIdReturnStatusCode200() {
@@ -22,8 +21,8 @@ public class DeleteDatasetsById {
 
     @Test
     public void validateDeleteDatasetsByIdReturnStatusCode401() {
-        token = InvalidToken;
-        response = RequestsDatasets.deleteDatasetsById(RequestsDatasets.responseCreateDatasets, token);
+        invalidToken = RequestToken.captureInvalidToken();
+        response = RequestsDatasets.deleteDatasetsById(RequestsDatasets.responseCreateDatasets, invalidToken);
         response.statusCode(HttpStatus.SC_UNAUTHORIZED);
     }
 

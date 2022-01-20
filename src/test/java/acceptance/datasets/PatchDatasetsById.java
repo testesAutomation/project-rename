@@ -12,8 +12,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 public class PatchDatasetsById {
 
     private ValidatableResponse response;
-    private String token;
-    private String InvalidToken = "123";
+    private String token, invalidToken;
 
 
     @Test
@@ -22,13 +21,12 @@ public class PatchDatasetsById {
         response = RequestsDatasets.patchDatasetsById(RequestsDatasets.responseCreateDatasets, token);
         response.statusCode(HttpStatus.SC_OK);
         response.body(notNullValue());
-
     }
 
     @Test
     public void validatePatchDatasetsByIdReturnStatusCode401() {
-        token = InvalidToken;
-        response = RequestsDatasets.patchDatasetsById(RequestsDatasets.responseCreateDatasets, token);
+        invalidToken = RequestToken.captureInvalidToken();
+        response = RequestsDatasets.patchDatasetsById(RequestsDatasets.responseCreateDatasets, invalidToken);
         response.statusCode(HttpStatus.SC_UNAUTHORIZED);
         response.body(notNullValue());
     }
