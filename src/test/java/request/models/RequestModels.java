@@ -4,6 +4,7 @@ import config.Headers;
 import config.Urls;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
+import models.models.BodyCreateModels;
 import models.models.ResponseCreateModels;
 
 import static config.Paths.*;
@@ -14,19 +15,21 @@ public class RequestModels {
     public static ResponseCreateModels responseCreateModels;
     static ValidatableResponse response;
 
-    public static ValidatableResponse createModels(String token) {
+    public static ValidatableResponse createModels(BodyCreateModels bodyCreateModels, String token) {
 
         response =  given()
                 .log()
                 .all()
+                .contentType(ContentType.JSON)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
+                .body(bodyCreateModels)
                 .post(Urls.ROOT.getUrl() + PATH_MODELS)
                 .then()
                 .log().all();
 
-        if(response.extract().statusCode() == 200) {
-            responseCreateModels = response.extract().as(ResponseCreateModels.class);
-        }
+//        if(response.extract().statusCode() == 200) {
+//            responseCreateModels = response.extract().as(ResponseCreateModels.class);
+//        }
         return response;
     }
 
