@@ -3,7 +3,7 @@ package config;
 public enum Urls {
 
     TOKEN (""),
-    ROOT_EXPERIMENTS ("");
+    ROOT("");
 
     private String url;
 

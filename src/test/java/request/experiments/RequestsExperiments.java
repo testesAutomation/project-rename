@@ -23,7 +23,7 @@ public class RequestsExperiments {
                 .contentType(ContentType.JSON)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
                 .body(bodyCreatesExperiments)
-                .post(Urls.ROOT_EXPERIMENTS.getUrl() + path)
+                .post(Urls.ROOT.getUrl() + path)
                 .then()
                 .log().all();
 

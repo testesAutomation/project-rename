@@ -12,4 +12,10 @@
             <class name="acceptance.datasets.DeleteDatasetsById"/>
         </classes>
     </test>
+
+    <test name="Models">
+    <classes>
+    </classes>
+    </test>
+
 </suite>
