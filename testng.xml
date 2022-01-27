@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="Suite Experiments" verbose="1" >
+<suite name="Suite Datasets" verbose="1" >
     <test name="Create, List, Update and Delete">
         <classes>
             <class name="acceptance.datasets.CreatesDatasets"/>
