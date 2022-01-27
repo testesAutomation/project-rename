@@ -3,6 +3,7 @@ package config;
 public enum Constant {
 
     DATASET_ID("3dcd5569-1c7d-4d4d-890b-5c66b8c54710"),
+    INVALID_DATASET_ID("3dcd556910"),
     NAME("TestAutomationModels"),
     NAME_PARAM("string"),
     VALUE_PARAM("string"),
@@ -12,7 +13,9 @@ public enum Constant {
     TIMEFRAMESTART("2020-03"),
     TIMEFRAMEEND("2020-03"),
     BUSINESSCASE("credit"),
-    TRAININGPROPORTION("0.7");
+    TRAININGPROPORTION("0.7"),
+    TRAININGPARAMS("LightGBM"),
+    OPTIMIZATIONMETHOD("ksScore");
 
     private String constant;
 

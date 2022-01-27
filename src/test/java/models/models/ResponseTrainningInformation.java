@@ -1,5 +1,10 @@
 package models.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class ResponseTrainningInformation {
 
     public String algorithm;

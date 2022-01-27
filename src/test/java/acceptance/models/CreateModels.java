@@ -13,7 +13,7 @@ public class CreateModels {
 
     private ValidatableResponse response;
     private BodyCreateModels bodyCreateModels;
-    private String token;
+    private String token, invalidToken;
 
     @Test
     public void validateCreateModelsReturnStatusCode200()  {
@@ -22,5 +22,26 @@ public class CreateModels {
         response = RequestModels.createModels(bodyCreateModels.newBodyCreateModels(), token);
         response.statusCode(HttpStatus.SC_OK);
         response.body(notNullValue());
+    }
+
+    @Test
+    public void validateCreateModelsReturnStatusCode401()  {
+        invalidToken = RequestToken.captureInvalidToken();
+        bodyCreateModels = new BodyCreateModels();
+        response = RequestModels.createModels(bodyCreateModels.newBodyCreateModels(), invalidToken);
+        response.statusCode(HttpStatus.SC_OK);
+        response.body(notNullValue());
+    }
+
+    @Test
+    public void validateCreateModelsReturnStatusCode400() {
+        token = RequestToken.captureToken();
+        BodyCreateModels invalidBodyCreateModels = new BodyCreateModels();
+        invalidBodyCreateModels.newBodyCreateModels();
+        invalidBodyCreateModels.setDatasetId("");
+        response = RequestModels.createModels(invalidBodyCreateModels, token);
+        response.statusCode(HttpStatus.SC_BAD_REQUEST);
+        response.body(notNullValue());
+
     }
 }
