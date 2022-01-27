@@ -60,6 +60,21 @@ public class RequestModels {
         return response;
     }
 
+    public static ValidatableResponse pathModels(ResponseModels responseCreateModels, String token, String name) {
+
+        response =  given()
+                .log()
+                .all()
+                .contentType(ContentType.JSON)
+                .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
+                .pathParam("id_models",responseCreateModels.getId())
+                .body(name)
+                .patch(Urls.ROOT.getUrl() + PATH_MODELS_BY_ID)
+                .then()
+                .log().all();
+        return response;
+    }
+
     public static ValidatableResponse deleteModelsById(ResponseModels responseCreateModels, String token) {
 
         return given()

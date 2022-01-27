@@ -13,7 +13,7 @@ public class ResponseModels {
     public String name;
     public String businessCase;
     public String algorithm;
-    public ResponseTrainningInformation trainningInformation;
+    public ResponseTrainingInformation trainingInformation;
     public ArrayList<Object> preProcessings;
     public String useExperianData;
     public String parentDatasetId;

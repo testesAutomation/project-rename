@@ -29,7 +29,7 @@ public class CreateModels {
         invalidToken = RequestToken.captureInvalidToken();
         bodyCreateModels = new BodyCreateModels();
         response = RequestModels.createModels(bodyCreateModels.newBodyCreateModels(), invalidToken);
-        response.statusCode(HttpStatus.SC_OK);
+        response.statusCode(HttpStatus.SC_UNAUTHORIZED);
         response.body(notNullValue());
     }
 

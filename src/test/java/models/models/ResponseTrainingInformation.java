@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ResponseTrainningInformation {
+public class ResponseTrainingInformation {
 
     public String algorithm;
     public String userDefinedAlgorithm;
