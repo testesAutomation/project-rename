@@ -3,14 +3,12 @@ package acceptance.models;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
-import request.experiments.RequestToken;
+import request.models.RequestToken;
 import request.models.RequestModels;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 public class ListModels {
-
-
 
     private ValidatableResponse response;
     private String token, invalidToken;

@@ -1,10 +1,12 @@
 package models.models;
 
+import config.Constant;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import static config.Constant.DATASET_ID;
+import static javax.swing.Action.NAME;
 
 @Getter
 @Setter
@@ -23,18 +25,18 @@ public class BodyCreateModels {
         public double trainingProportion;
 
         public BodyCreateModels newBodyCreateModels(){
-                this.name = "TestAutomationModels";
+                this.name = Constant.NAME.toString();
                 this.datasetId = DATASET_ID.toString();
                 this.useExperianData = false;
-                this.target = "default_serasa_12m";
+                this.target = Constant.TARGET.toString();
                 ignoredVariables = new ArrayList<>();
-                this.ignoredVariables.add("default_serasa_12m");
-                this.timeFrameStart = "2020-03";
-                this.timeFrameEnd = "2020-03";
+                this.ignoredVariables.add(Constant.IGNOREDVARIABLES.toString());
+                this.timeFrameStart = Constant.TIMEFRAMESTART.toString();
+                this.timeFrameEnd = Constant.TIMEFRAMEEND.toString();
                 preProcessings = new ArrayList<>();
-                this.businessCase = "credit";
+                this.businessCase = Constant.BUSINESSCASE.toString();
                 trainingParameters = new TrainingParameters();
-                this.trainingProportion = 0.7;
+                this.trainingProportion = Double.parseDouble(Constant.TRAININGPROPORTION.toString());
 
           return this;
         }

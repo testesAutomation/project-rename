@@ -1,9 +1,9 @@
-package request.experiments;
+package request.models;
 
 import com.github.javafaker.Faker;
 import config.Urls;
 import io.restassured.http.ContentType;
-import models.experiments.BodyToken;
+import models.models.BodyToken;
 import java.util.Locale;
 import static io.restassured.RestAssured.given;
 

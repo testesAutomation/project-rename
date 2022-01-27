@@ -1,5 +1,7 @@
 package models.models;
 
+import config.Constant;
+
 import java.util.ArrayList;
 
 public class HyperParemetersOption {
@@ -11,22 +13,22 @@ public class HyperParemetersOption {
     public ArrayList<String> options;
 
     public HyperParemetersOption param1(){
-        this.name = "string";
-        this.value = "string";
+        this.name = Constant.NAME_PARAM.toString();
+        this.value = Constant.VALUE_PARAM.toString();
         return this;
     }
 
     public HyperParemetersOption param2(){
-        this.name = "string";
+        this.name = Constant.NAME_PARAM.toString();
         this.range = new Range();
-        this.searchStrategy = "quniform";
+        this.searchStrategy = Constant.SEARCH_PARAM.toString();
         return this;
     }
 
     public HyperParemetersOption param3(){
-        this.name = "string";
+        this.name = Constant.NAME_PARAM.toString();
         this.options = new ArrayList<>();
-        options.add("string");
+        options.add(Constant.NAME_PARAM.toString());
         return this;
     }
 }

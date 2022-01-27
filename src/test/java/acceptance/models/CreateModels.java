@@ -4,7 +4,7 @@ import io.restassured.response.ValidatableResponse;
 import models.models.BodyCreateModels;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
-import request.experiments.RequestToken;
+import request.models.RequestToken;
 import request.models.RequestModels;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
