@@ -68,7 +68,10 @@ public class RequestModels {
                 .contentType(ContentType.JSON)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
                 .pathParam("id_models",responseCreateModels.getId())
-                .body(name)
+                .body("{\n" +
+                        "  \"name\":\""+ name +"\"\n" +
+                        "  \n" +
+                        "}")
                 .patch(Urls.ROOT.getUrl() + PATH_MODELS_BY_ID)
                 .then()
                 .log().all();
