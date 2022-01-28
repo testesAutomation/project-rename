@@ -13,9 +13,9 @@ public class BodyToken {
     private String scope;
 
     public BodyToken(){
-        client_id = "0oawj0jrpxdRCKt1x0h7";
-        client_secret = "5tmq8lT1ChCMGP-HOvhY2UFozhHUT7-b1KkXYrnn";
-        grant_type = "client_credentials";
-        scope = "amt_grp-sandbox-dextra";
+        client_id =  System.getenv("CLIENT_ID");
+        client_secret = System.getenv("CLIENT_SECRET");
+        grant_type = System.getenv("GRANT_TYPE");
+        scope = System.getenv("SCOPE");
     }
 }

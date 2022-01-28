@@ -7,11 +7,11 @@ import io.restassured.response.ValidatableResponse;
 import models.experiments.BodyCreatesExperiments;
 import models.experiments.ResponseCreatesExperiments;
 
+import static config.Paths.PATH_EXPERIMENTS;
 import static io.restassured.RestAssured.given;
 
 public class RequestsExperiments {
 
-    private static String path = "/experiments";
     public static ResponseCreatesExperiments responseCreatesExperiments;
     static ValidatableResponse response;
 
@@ -23,7 +23,7 @@ public class RequestsExperiments {
                 .contentType(ContentType.JSON)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
                 .body(bodyCreatesExperiments)
-                .post(Urls.ROOT_EXPERIMENTS.getUrl() + path)
+                .post(Urls.ROOT.getUrl() + PATH_EXPERIMENTS)
                 .then()
                 .log().all();
 
@@ -31,5 +31,17 @@ public class RequestsExperiments {
             responseCreatesExperiments = response.extract().as(ResponseCreatesExperiments.class);
         }
         return response;
+    }
+
+    public static ValidatableResponse deleteExperiments(ResponseCreatesExperiments responseCreatesExperiments, String token) {
+
+        return given()
+                .log()
+                .all()
+                .contentType(ContentType.JSON)
+                .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
+                .delete(Urls.ROOT.getUrl() + PATH_EXPERIMENTS +  "/" + responseCreatesExperiments.getId())
+                .then()
+                .log().all();
     }
 }

@@ -2,6 +2,7 @@ package config;
 
 public enum Paths {
 
+    PATH_EXPERIMENTS("/experiments"),
     PATH_DATASETS("/datasets"),
     PATH_DATASETS_BY_ID("/datasets/{id_datasets}"),
     PATH_DATASETS_TIMEFRAMES("/datasets/{id_datasets}/timeFrames"),

@@ -29,7 +29,7 @@ public class RequestsDatasets {
                 .multiPart("experimentId", responseCreatesExperiments.getId())
                 .multiPart("file", file)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
-                .post(Urls.ROOT_EXPERIMENTS.getUrl() + PATH_DATASETS)
+                .post(Urls.ROOT.getUrl() + PATH_DATASETS)
                 .then()
                 .log().all();
 
@@ -47,7 +47,7 @@ public class RequestsDatasets {
                 .contentType(ContentType.JSON)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
                 .pathParam("id_datasets",responseCreateDatasets.getId())
-                .get(Urls.ROOT_EXPERIMENTS.getUrl() + PATH_DATASETS_BY_ID)
+                .get(Urls.ROOT.getUrl() + PATH_DATASETS_BY_ID)
                 .then()
                 .log().all();
         return response;
@@ -61,7 +61,7 @@ public class RequestsDatasets {
                 .all()
                 .contentType(ContentType.JSON)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
-                .get(Urls.ROOT_EXPERIMENTS.getUrl() + PATH_DATASETS)
+                .get(Urls.ROOT.getUrl() + PATH_DATASETS)
                 .then()
                 .log().all();
         return response;
@@ -75,7 +75,7 @@ public class RequestsDatasets {
                 .contentType(ContentType.JSON)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader() + token)
                 .pathParam("id_datasets",responseCreateDatasets.getId())
-                .delete(Urls.ROOT_EXPERIMENTS.getUrl() + PATH_DATASETS_BY_ID)
+                .delete(Urls.ROOT.getUrl() + PATH_DATASETS_BY_ID)
                 .then()
                 .log().all();
 
@@ -97,7 +97,7 @@ public class RequestsDatasets {
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
                 .pathParam("id_datasets",responseCreateDatasets.getId())
                 .body(bodyPatch)
-                .patch(Urls.ROOT_EXPERIMENTS.getUrl() + PATH_DATASETS_BY_ID)
+                .patch(Urls.ROOT.getUrl() + PATH_DATASETS_BY_ID)
                 .then()
                 .log().all();
         return response;
@@ -111,7 +111,7 @@ public class RequestsDatasets {
                 .contentType(ContentType.JSON)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
                 .pathParam("id_datasets",responseCreateDatasets.getId())
-                .get(Urls.ROOT_EXPERIMENTS.getUrl() + PATH_DATASETS_TIMEFRAMES)
+                .get(Urls.ROOT.getUrl() + PATH_DATASETS_TIMEFRAMES)
                 .then()
                 .log().all();
         return response;
@@ -126,7 +126,7 @@ public class RequestsDatasets {
                 .contentType(ContentType.JSON)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
                 .pathParam("id_datasets", responseCreateDatasets.getId())
-                .get(Urls.ROOT_EXPERIMENTS.getUrl() + PATH_DATASETS_COLUMNS)
+                .get(Urls.ROOT.getUrl() + PATH_DATASETS_COLUMNS)
                 .then()
                 .log().all();
         return response;
