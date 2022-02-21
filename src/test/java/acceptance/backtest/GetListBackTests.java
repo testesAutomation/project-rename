@@ -3,7 +3,7 @@ package acceptance.backtest;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
-import request.RequestBackTest.RequestBackTests;
+import request.backtests.RequestBackTests;
 import request.token.RequestToken;
 
 import static org.hamcrest.CoreMatchers.notNullValue;

@@ -4,7 +4,7 @@ import io.restassured.response.ValidatableResponse;
 import models.backtest.BodyCreateBackTests;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
-import request.RequestBackTest.RequestBackTests;
+import request.backtests.RequestBackTests;
 import request.models.RequestModels;
 import request.token.RequestToken;
 

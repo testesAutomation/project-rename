@@ -1,4 +1,4 @@
-package request.RequestBackTest;
+package request.backtests;
 
 import config.Headers;
 import config.Urls;
