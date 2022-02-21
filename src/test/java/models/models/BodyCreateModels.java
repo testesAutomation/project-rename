@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import static config.Constant.DATASET_ID;
-import static javax.swing.Action.NAME;
 
 @Getter
 @Setter
@@ -21,7 +20,7 @@ public class BodyCreateModels {
         public String timeFrameEnd;
         public ArrayList<Object> preProcessings;
         public String businessCase;
-        public TrainingParameters trainingParameters;
+        public BodyTrainingParameters trainingParameters;
         public double trainingProportion;
 
         public BodyCreateModels newBodyCreateModels(){
@@ -35,7 +34,7 @@ public class BodyCreateModels {
                 this.timeFrameEnd = Constant.TIMEFRAMEEND.toString();
                 preProcessings = new ArrayList<>();
                 this.businessCase = Constant.BUSINESSCASE.toString();
-                trainingParameters = new TrainingParameters();
+                trainingParameters = new BodyTrainingParameters();
                 this.trainingProportion = Double.parseDouble(Constant.TRAININGPROPORTION.toString());
 
           return this;

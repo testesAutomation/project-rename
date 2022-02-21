@@ -4,12 +4,6 @@
     <test name="Create, List, Patch and Delete Models">
         <classes>
             <class name="acceptance.models.CreateModels"/>
-            <class name="acceptance.models.GetModelsById"/>
-            <class name="acceptance.models.ListModels"/>
-            <class name="acceptance.models.GetModelsColumns"/>
-            <class name="acceptance.models.GetModelsPreProcessing"/>
-            <class name="acceptance.models.PatchModels"/>
-            <class name="acceptance.models.DeleteModels"/>
         </classes>
     </test>
 

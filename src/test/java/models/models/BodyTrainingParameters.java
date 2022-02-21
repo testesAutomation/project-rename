@@ -8,17 +8,17 @@ import java.util.ArrayList;
 
 @Getter
 @Setter
-public class TrainingParameters {
+public class BodyTrainingParameters {
 
     public String algorithm;
     public String optimizationMetric;
-    public ArrayList<HyperParemetersOption> hyperParemetersOptions;
+    public ArrayList<BodyHyperParemetersOption> hyperParemetersOptions;
 
-    public TrainingParameters(){
+    public BodyTrainingParameters(){
         this.algorithm = Constant.TRAININGPARAMS.toString();
         this.optimizationMetric = Constant.OPTIMIZATIONMETHOD.toString();
         hyperParemetersOptions = new ArrayList<>();
-        HyperParemetersOption parameters = new HyperParemetersOption();
+        BodyHyperParemetersOption parameters = new BodyHyperParemetersOption();
         hyperParemetersOptions.add(parameters.param1());
         hyperParemetersOptions.add(parameters.param2());
         hyperParemetersOptions.add(parameters.param3());

@@ -7,7 +7,5 @@ public class AwsConfiguration {
         System.getenv("AWS_SECRET_ACESS_KEY");
         System.getenv("KMS_ARM");
         System.getenv("REGION");
-
-
     }
 }

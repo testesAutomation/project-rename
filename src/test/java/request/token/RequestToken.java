@@ -1,4 +1,4 @@
-package request.models;
+package request.token;
 
 import com.github.javafaker.Faker;
 import config.Urls;

@@ -1,11 +1,10 @@
 package models.models;
 
-public class Range {
+public class BodyRange {
     public Integer start;
     public Integer end;
 
-
-    public Range() {
+    public BodyRange() {
         this.start = 0;
         this.end = 0;
     }
