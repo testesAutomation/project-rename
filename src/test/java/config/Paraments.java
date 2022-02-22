@@ -5,6 +5,9 @@ public enum Paraments {
     DATASET_ID("3dcd5569-1c7d-4d4d-890b-5c66b8c54710"),
     NAME("TestAutomationModels"),
     INVALID_BACKTESTS_ID("234123412313133132313132"),
+    BACKTESTS_COMPANY("serasa_12m"),
+    BACKTESTS_TITLE("serasa_13m"),
+    BACKTESTS_CONCLUSION("serasa_14m"),
     NAME_BACKTEST("TestAutomationBackTest"),
     NAME_PARAM("string"),
     VALUE_PARAM("string"),
@@ -18,19 +21,19 @@ public enum Paraments {
     TRAININGPARAMS("LightGBM"),
     OPTIMIZATIONMETHOD("ksScore");
 
-    private String constant;
+    private String paraments;
 
-    Paraments(String constant) {
-        this.constant = constant;
+    Paraments(String paraments) {
+        this.paraments = paraments;
     }
 
-    public String getConstant() {
-        return constant;
+    public String getParaments() {
+        return paraments;
     }
 
     @Override
     public String toString() {
-        return constant;
+        return paraments;
 
     }
 }
