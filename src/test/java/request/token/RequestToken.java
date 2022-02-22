@@ -3,7 +3,7 @@ package request.token;
 import com.github.javafaker.Faker;
 import config.Urls;
 import io.restassured.http.ContentType;
-import models.models.BodyToken;
+import models.token.BodyToken;
 import java.util.Locale;
 import static io.restassured.RestAssured.given;
 
