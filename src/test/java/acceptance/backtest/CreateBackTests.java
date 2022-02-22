@@ -39,7 +39,7 @@ public class CreateBackTests {
         token = RequestToken.captureToken();
         invalidBody = new BodyCreateBackTests().invalidBody();
         response = RequestBackTests.createBackTest(invalidBody, token);
-        response.statusCode(HttpStatus.SC_UNAUTHORIZED);
+        response.statusCode(HttpStatus.SC_BAD_REQUEST);
     }
 }
 
