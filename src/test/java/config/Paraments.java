@@ -3,7 +3,9 @@ package config;
 public enum Paraments {
 
     DATASET_ID("3dcd5569-1c7d-4d4d-890b-5c66b8c54710"),
+    MODELS_ID(""),
     NAME("TestAutomationModels"),
+    TECHNICAL_ANALYST("Test Automation BackTests"),
     INVALID_BACKTESTS_ID("234123412313133132313132"),
     BACKTESTS_COMPANY("serasa_12m"),
     BACKTESTS_TITLE("serasa_13m"),

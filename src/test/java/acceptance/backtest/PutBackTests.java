@@ -16,7 +16,7 @@ public class PutBackTests {
     @Test
     public void validatePutBackTestReturnStatusCode200()  {
         token = RequestToken.captureToken();
-        bodyPutBackTests = new BodyPutBackTests();
+        bodyPutBackTests = new BodyPutBackTests().validBody();
         response = RequestBackTests.putBackTestsById(bodyPutBackTests, token);
         response.statusCode(HttpStatus.SC_OK);
     }

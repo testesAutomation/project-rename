@@ -1,7 +1,6 @@
 package models.backtest;
 
 import config.Paraments;
-import models.models.ResponseModels;
 
 public class BodyCreateBackTests {
 
@@ -12,11 +11,11 @@ public class BodyCreateBackTests {
     public String timeFrameStart;
     public String timeFrameEnd;
 
-    public BodyCreateBackTests validBody(ResponseModels responseModels){
+    public BodyCreateBackTests validBody(){
         name = Paraments.NAME_BACKTEST.toString();
         datasetId = Paraments.DATASET_ID.toString();
         target = Paraments.TARGET.toString();
-        modelId = responseModels.getId();
+        modelId = Paraments.MODELS_ID.toString();
         timeFrameStart = Paraments.TIMEFRAMESTART.toString();
         timeFrameEnd = Paraments.TIMEFRAMEEND.toString();
         return this;

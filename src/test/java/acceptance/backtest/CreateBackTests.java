@@ -5,7 +5,6 @@ import models.backtest.BodyCreateBackTests;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 import request.backtests.RequestBackTests;
-import request.models.RequestModels;
 import request.token.RequestToken;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -19,7 +18,7 @@ public class CreateBackTests {
     @Test
     public void validateCreateBackTestReturnStatusCode200()  {
         token = RequestToken.captureToken();
-        bodyCreateBackTest = new BodyCreateBackTests().validBody(RequestModels.responseModels);
+        bodyCreateBackTest = new BodyCreateBackTests().validBody();
         response = RequestBackTests.createBackTest(bodyCreateBackTest, token);
         response.statusCode(HttpStatus.SC_OK);
         RequestBackTests.extractResponse(response);
@@ -29,7 +28,7 @@ public class CreateBackTests {
     @Test
     public void validateCreateBackTestReturnStatusCode401()  {
         invalidToken = RequestToken.captureInvalidToken();
-        bodyCreateBackTest = new BodyCreateBackTests().validBody(RequestModels.responseModels);
+        bodyCreateBackTest = new BodyCreateBackTests().validBody();
         response = RequestBackTests.createBackTest(bodyCreateBackTest, invalidToken);
         response.statusCode(HttpStatus.SC_UNAUTHORIZED);
     }

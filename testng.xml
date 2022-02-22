@@ -3,13 +3,11 @@
 <suite name="Suite" verbose="1" >
     <test name="Create, List, GetById, Delete and Put Backtests">
         <classes>
-            <class name="acceptance.models.CreateModels"/>
             <class name="acceptance.backtest.CreateBackTests"/>
             <class name="acceptance.backtest.GetBackTestsById"/>
             <class name="acceptance.backtest.GetListBackTests"/>
             <class name="acceptance.backtest.PutBackTests"/>
             <class name="acceptance.backtest.DeleteBackTests"/>
-            <class name="acceptance.models.DeleteModels"/>
         </classes>
     </test>
 
