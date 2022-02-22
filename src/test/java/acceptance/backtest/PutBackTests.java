@@ -13,7 +13,6 @@ public class PutBackTests {
     private BodyPutBackTests bodyPutBackTests, invalidBody;
     private String token, invalidToken;
 
-
     @Test
     public void validatePutBackTestReturnStatusCode200()  {
         token = RequestToken.captureToken();
@@ -26,7 +25,7 @@ public class PutBackTests {
     public void validatePutBackTestReturnStatusCode401()  {
         invalidToken = RequestToken.captureInvalidToken();
         bodyPutBackTests = new BodyPutBackTests();
-        response = RequestBackTests.putBackTestsById(bodyPutBackTests, token);
+        response = RequestBackTests.putBackTestsById(bodyPutBackTests, invalidToken);
         response.statusCode(HttpStatus.SC_UNAUTHORIZED);
     }
 
