@@ -33,7 +33,7 @@ public class GetBackTestsById {
     @Test
     public void validateGetBackTestByIdReturnStatusCode400()  {
         token = RequestToken.captureToken();
-        ResponseBackTests invalidRequest = RequestBackTests.responseBackTest;
+        ResponseBackTests invalidRequest = new ResponseBackTests();
         invalidRequest.setId(Paraments.INVALID_BACKTESTS_ID.toString());
         response = RequestBackTests.getBackTestsById(invalidRequest, token);
         response.statusCode(HttpStatus.SC_BAD_REQUEST);
