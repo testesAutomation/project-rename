@@ -1,6 +1,6 @@
 package models.backtest;
 
-import config.Constant;
+import config.Paraments;
 import models.models.ResponseModels;
 
 public class BodyCreateBackTests {
@@ -13,22 +13,22 @@ public class BodyCreateBackTests {
     public String timeFrameEnd;
 
     public BodyCreateBackTests validBody(ResponseModels responseModels){
-        name = Constant.NAME_BACKTEST.toString();
-        datasetId = Constant.DATASET_ID.toString();
-        target = Constant.TARGET.toString();
+        name = Paraments.NAME_BACKTEST.toString();
+        datasetId = Paraments.DATASET_ID.toString();
+        target = Paraments.TARGET.toString();
         modelId = responseModels.getId();
-        timeFrameStart = Constant.TIMEFRAMESTART.toString();
-        timeFrameEnd = Constant.TIMEFRAMEEND.toString();
+        timeFrameStart = Paraments.TIMEFRAMESTART.toString();
+        timeFrameEnd = Paraments.TIMEFRAMEEND.toString();
         return this;
     }
 
     public BodyCreateBackTests invalidBody(){
-        name = Constant.NAME_BACKTEST.toString();
+        name = Paraments.NAME_BACKTEST.toString();
         datasetId = "";
-        target = Constant.TARGET.toString();
+        target = Paraments.TARGET.toString();
         modelId = "";
-        timeFrameStart = Constant.TIMEFRAMESTART.toString();
-        timeFrameEnd = Constant.TIMEFRAMEEND.toString();
+        timeFrameStart = Paraments.TIMEFRAMESTART.toString();
+        timeFrameEnd = Paraments.TIMEFRAMEEND.toString();
         return this;
     }
 }

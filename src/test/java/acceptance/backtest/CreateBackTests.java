@@ -22,6 +22,7 @@ public class CreateBackTests {
         bodyCreateBackTest = new BodyCreateBackTests().validBody(RequestModels.responseModels);
         response = RequestBackTests.createBackTest(bodyCreateBackTest, token);
         response.statusCode(HttpStatus.SC_OK);
+        RequestBackTests.extractResponse(response);
         response.body(notNullValue());
     }
 

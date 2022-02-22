@@ -1,11 +1,11 @@
 package models.models;
 
-import config.Constant;
+import config.Paraments;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import static config.Constant.DATASET_ID;
+import static config.Paraments.DATASET_ID;
 
 @Getter
 @Setter
@@ -24,18 +24,18 @@ public class BodyCreateModels {
         public double trainingProportion;
 
         public BodyCreateModels newBodyCreateModels(){
-                this.name = Constant.NAME.toString();
+                this.name = Paraments.NAME.toString();
                 this.datasetId = DATASET_ID.toString();
                 this.useExperianData = false;
-                this.target = Constant.TARGET.toString();
+                this.target = Paraments.TARGET.toString();
                 ignoredVariables = new ArrayList<>();
-                this.ignoredVariables.add(Constant.IGNOREDVARIABLES.toString());
-                this.timeFrameStart = Constant.TIMEFRAMESTART.toString();
-                this.timeFrameEnd = Constant.TIMEFRAMEEND.toString();
+                this.ignoredVariables.add(Paraments.IGNOREDVARIABLES.toString());
+                this.timeFrameStart = Paraments.TIMEFRAMESTART.toString();
+                this.timeFrameEnd = Paraments.TIMEFRAMEEND.toString();
                 preProcessings = new ArrayList<>();
-                this.businessCase = Constant.BUSINESSCASE.toString();
+                this.businessCase = Paraments.BUSINESSCASE.toString();
                 trainingParameters = new BodyTrainingParameters();
-                this.trainingProportion = Double.parseDouble(Constant.TRAININGPROPORTION.toString());
+                this.trainingProportion = Double.parseDouble(Paraments.TRAININGPROPORTION.toString());
 
           return this;
         }

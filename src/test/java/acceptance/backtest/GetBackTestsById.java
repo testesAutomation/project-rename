@@ -1,6 +1,6 @@
 package acceptance.backtest;
 
-import config.Constant;
+import config.Paraments;
 import io.restassured.response.ValidatableResponse;
 import models.backtest.ResponseBackTests;
 import org.apache.http.HttpStatus;
@@ -34,7 +34,7 @@ public class GetBackTestsById {
     public void validateGetBackTestByIdReturnStatusCode400()  {
         token = RequestToken.captureToken();
         ResponseBackTests invalidRequest = RequestBackTests.responseBackTest;
-        invalidRequest.setId(Constant.INVALID_BACKTESTS_ID.toString());
+        invalidRequest.setId(Paraments.INVALID_BACKTESTS_ID.toString());
         response = RequestBackTests.getBackTestsById(invalidRequest, token);
         response.statusCode(HttpStatus.SC_BAD_REQUEST);
     }

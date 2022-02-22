@@ -1,6 +1,6 @@
 package models.models;
 
-import config.Constant;
+import config.Paraments;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,8 +15,8 @@ public class BodyTrainingParameters {
     public ArrayList<BodyHyperParemetersOption> hyperParemetersOptions;
 
     public BodyTrainingParameters(){
-        this.algorithm = Constant.TRAININGPARAMS.toString();
-        this.optimizationMetric = Constant.OPTIMIZATIONMETHOD.toString();
+        this.algorithm = Paraments.TRAININGPARAMS.toString();
+        this.optimizationMetric = Paraments.OPTIMIZATIONMETHOD.toString();
         hyperParemetersOptions = new ArrayList<>();
         BodyHyperParemetersOption parameters = new BodyHyperParemetersOption();
         hyperParemetersOptions.add(parameters.param1());

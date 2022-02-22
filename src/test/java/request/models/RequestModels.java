@@ -4,6 +4,7 @@ import config.Headers;
 import config.Urls;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
+import models.backtest.ResponseBackTests;
 import models.models.BodyCreateModels;
 import models.models.ResponseModels;
 
@@ -27,9 +28,11 @@ public class RequestModels {
                 .then()
                 .log().all();
 
-        responseModels = response.extract().as(ResponseModels.class);
-
         return response;
+    }
+
+    public static void extractResponse(ValidatableResponse responseParam){
+        responseModels = responseParam.extract().as(ResponseModels.class);
     }
 
     public static ValidatableResponse deleteModelsById(ResponseModels responseCreateModels, String token) {

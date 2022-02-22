@@ -28,11 +28,12 @@ public class RequestBackTests {
                 .then()
                 .log().all();
 
-        responseBackTest = response.extract().as(ResponseBackTests.class);
-
         return response;
     }
 
+    public static void extractResponse(ValidatableResponse responseParam){
+        responseBackTest = responseParam.extract().as(ResponseBackTests.class);
+    }
 
     public static ValidatableResponse getListBackTest(String token) {
 

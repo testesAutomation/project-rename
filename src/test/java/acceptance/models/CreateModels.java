@@ -21,6 +21,7 @@ public class CreateModels {
         bodyCreateModels = new BodyCreateModels();
         response = RequestModels.createModels(bodyCreateModels.newBodyCreateModels(), token);
         response.statusCode(HttpStatus.SC_OK);
+        RequestModels.extractResponse(response);
         response.body(notNullValue());
     }
 

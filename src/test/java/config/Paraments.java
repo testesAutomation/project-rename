@@ -1,6 +1,6 @@
 package config;
 
-public enum Constant {
+public enum Paraments {
 
     DATASET_ID("3dcd5569-1c7d-4d4d-890b-5c66b8c54710"),
     NAME("TestAutomationModels"),
@@ -20,7 +20,7 @@ public enum Constant {
 
     private String constant;
 
-    Constant(String constant) {
+    Paraments(String constant) {
         this.constant = constant;
     }
 
