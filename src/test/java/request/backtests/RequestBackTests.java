@@ -79,14 +79,14 @@ public class RequestBackTests {
         return response;
     }
 
-    public static ValidatableResponse putBackTestsById(BodyPutBackTests bodyPutBackTests, String token) {
+    public static ValidatableResponse putBackTestsById(BodyPutBackTests bodyPutBackTests, String token, ResponseBackTests responseBackTests) {
 
         response =  given()
                 .log()
                 .all()
                 .contentType(ContentType.JSON)
                 .header(Headers.AUTHORIZATION.getHeader(), Headers.BEARER.getHeader()+ token)
-                .pathParam("id_backtests", responseBackTest.getId())
+                .pathParam("id_backtests", responseBackTests.getId())
                 .body(bodyPutBackTests)
                 .put(Urls.ROOT.getUrl() + PATH_BACKTEST_ANALYST)
                 .then()

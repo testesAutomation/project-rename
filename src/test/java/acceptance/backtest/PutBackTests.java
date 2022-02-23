@@ -1,7 +1,9 @@
 package acceptance.backtest;
 
+import config.Paraments;
 import io.restassured.response.ValidatableResponse;
 import models.backtest.BodyPutBackTests;
+import models.backtest.ResponseBackTests;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 import request.backtests.RequestBackTests;
@@ -17,7 +19,7 @@ public class PutBackTests {
     public void validatePutBackTestReturnStatusCode200()  {
         token = RequestToken.captureToken();
         bodyPutBackTests = new BodyPutBackTests().validBody();
-        response = RequestBackTests.putBackTestsById(bodyPutBackTests, token);
+        response = RequestBackTests.putBackTestsById(bodyPutBackTests, token, RequestBackTests.responseBackTest);
         response.statusCode(HttpStatus.SC_OK);
     }
 
@@ -25,7 +27,7 @@ public class PutBackTests {
     public void validatePutBackTestReturnStatusCode401()  {
         invalidToken = RequestToken.captureInvalidToken();
         bodyPutBackTests = new BodyPutBackTests();
-        response = RequestBackTests.putBackTestsById(bodyPutBackTests, invalidToken);
+        response = RequestBackTests.putBackTestsById(bodyPutBackTests, invalidToken, RequestBackTests.responseBackTest);
         response.statusCode(HttpStatus.SC_UNAUTHORIZED);
     }
 
@@ -33,7 +35,9 @@ public class PutBackTests {
     public void validatePutBackTestReturnStatusCode400()  {
         token = RequestToken.captureToken();
         invalidBody = new BodyPutBackTests().invalidBody();
-        response = RequestBackTests.putBackTestsById(invalidBody, token);
+        ResponseBackTests invalidResponseBackTests = new ResponseBackTests();
+        invalidResponseBackTests.setId(Paraments.INVALID_BACKTESTS_ID.toString());
+        response = RequestBackTests.putBackTestsById(invalidBody, token, invalidResponseBackTests);
         response.statusCode(HttpStatus.SC_BAD_REQUEST);
     }
 
