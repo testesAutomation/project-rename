@@ -21,8 +21,6 @@ public class BodyPutBackTests {
     }
 
     public BodyPutBackTests invalidBody(){
-        String invalidParam = "";
-        String invalidParam2 = "";
         return this;
     }
 }
